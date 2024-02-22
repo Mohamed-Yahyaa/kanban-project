@@ -28,12 +28,7 @@ export class AppComponent {
   ];
 
 
-  modifyColumnTitle(column: any): void {
-    const newTitle = prompt('Enter the new column title:', column.headerText);
-    if (newTitle) {
-      column.headerText = newTitle;
-    }
-  }
+
 
   public data: Object[] = [  {
     "Id": "Task 1",
@@ -165,6 +160,12 @@ removeColumn(column: any): void {
   }
 }
 
+modifyColumnTitle(column: any): void {
+  const newTitle = prompt('Enter the new column title:', column.headerText);
+  if (newTitle) {
+    column.headerText = newTitle;
+  }
+}
 
 addColumn(): void {
   const columnName = prompt('Enter the name:');
