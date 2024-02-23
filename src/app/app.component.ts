@@ -178,6 +178,14 @@ addColumn(): void {
     this.columns.push(newColumn);
   }
 }
+
+taskCount: number = 0;
+
+inCount() {
+  this.taskCount++;
+}
+
+
   title = 'kanban-project';
   public cardSettings: CardSettingsModel = {
     contentField: 'Summary',
