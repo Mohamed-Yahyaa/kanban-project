@@ -4,6 +4,12 @@
 <h1>Kanban Project</h1>
 
 
+
+
+
+
+
+
 <button  mat-flat-button  class="material-symbols-outlined-1"(click)="addColumn()" > <mat-icon>add_box</mat-icon></button>
 <ejs-kanban #kanbanObj keyField="Status" [dataSource]="data" [cardSettings]="cardSettings" width="auto" height="auto">
   <e-columns>
@@ -19,7 +25,7 @@
       <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
         <mat-icon>menu</mat-icon>
       </button>
-      <!-- <button mat-button [matMenuTriggerFor]="menu" class="menuu">Menu</button> -->
+
  <mat-menu #menu="matMenu">
 
     <button mat-menu-item (click)="addColumn()">Add</button>
@@ -30,9 +36,8 @@
 
  </mat-menu>
 
- <mat-icon class="material-symbols-outlined" matBadge="1" matBadgeSize="medium" matBadgeColor="primary"> task</mat-icon>
 
-
+ <mat-icon class="material-symbols-outlined" matBadge= {{getTaskCount(column.keyField)}} matBadgeSize="medium" matBadgeColor="primary">task</mat-icon>
 
 
 </ng-template>
