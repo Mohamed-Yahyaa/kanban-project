@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component } from '@angular/core';
 // import { kanbanData } from './datasource';
 import { CardSettingsModel,  } from '@syncfusion/ej2-angular-kanban';
@@ -20,6 +21,7 @@ import { CardSettingsModel,  } from '@syncfusion/ej2-angular-kanban';
 export class AppComponent {
 
 
+
   columns = [
     { headerText: 'To do', keyField: 'Open', allowToggle: true },
     { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true },
@@ -27,6 +29,9 @@ export class AppComponent {
     { headerText: 'Done', keyField: 'Close', allowToggle: true }
   ];
 
+onColumnDrop(event: CdkDragDrop<any[]>): void {
+  moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+}
 
    data: any[] = [
     {
@@ -155,7 +160,6 @@ getTaskCount(keyField: string): number {
 }
 
 
-
 removeColumn(column: any): void {
   const index = this.columns.indexOf(column);
   if (index > -1) {
@@ -164,7 +168,7 @@ removeColumn(column: any): void {
 }
 
 modifyColumnTitle(column: any): void {
-  const newTitle = prompt('Enter the new column title:', column.headerText);
+  const newTitle = prompt('new column title:', column.headerText);
   if (newTitle) {
     column.headerText = newTitle;
   }
@@ -173,15 +177,19 @@ modifyColumnTitle(column: any): void {
 addColumn(): void {
   const columnName = prompt('Enter the name:');
   if (columnName) {
-    const newColumn = {
-      headerText: columnName,
-      keyField: columnName.replace(/\s/g, ''),
-      allowToggle: true
-    };
-    this.columns.push(newColumn);
+    const position = Number(prompt('Enter the index position :'));
+    if (position >= 1 && position <= 8) {
+      const newColumn = {
+        headerText: columnName,
+        keyField: columnName.replace(/\s/g, ''),
+        allowToggle: true
+      };
+      this.columns.splice(position - 1, 0, newColumn);
+    } else {
+      alert('Invalid index position. Column not added.');
+    }
   }
 }
-
 taskCount: number = 0;
 
 inCount() {

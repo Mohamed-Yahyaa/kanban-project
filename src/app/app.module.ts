@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { AppComponent } from './app.component';
 import { KanbanModule } from '@syncfusion/ej2-angular-kanban';
 import { DragComponent } from './drag/drag.component';
@@ -9,7 +10,8 @@ import { MatMenuModule} from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
-
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { StepperModule, StepperAllModule } from '@syncfusion/ej2-angular-navigations';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {MatBadgeModule} from '@angular/material/badge';
     DragComponent
   ],
   imports: [
-    BrowserModule, KanbanModule, BrowserAnimationsModule, MatMenuModule, MatIconModule, MatButtonModule, MatBadgeModule
+    BrowserModule, KanbanModule, BrowserAnimationsModule,
+    MatMenuModule, MatIconModule, MatButtonModule,
+    MatBadgeModule ,DragDropModule ,StepperModule, StepperAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]

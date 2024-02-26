@@ -3,28 +3,43 @@
 
 <h1>Kanban Project</h1>
 
-
-
+<!-- <div class="iconWithLabel">
+  <ejs-stepper>
+    <e-steps>
+      <e-step label="Cart" iconCss="sf-icon-cart"></e-step>
+      <e-step label="Address" iconCss="sf-icon-user"></e-step>
+      <e-step label="Delivery" iconCss="sf-icon-transport"></e-step>
+      <e-step label="Payment" iconCss="sf-icon-payment"></e-step>
+      <e-step label="Ordered" iconCss="sf-icon-success"></e-step>
+  </e-steps>
+  </ejs-stepper>
+</div> -->
 
 
 
 
 
 <button  mat-flat-button  class="material-symbols-outlined-1"(click)="addColumn()" > <mat-icon>add_box</mat-icon></button>
+
+<div class="kanban-column" *ngFor="let column of columns; let i = index" cdkDrag (cdkDragEnded)="onColumnDrop($event)">
+  <!-- Column content -->
+
+</div>
+
 <ejs-kanban #kanbanObj keyField="Status" [dataSource]="data" [cardSettings]="cardSettings" width="auto" height="auto">
   <e-columns>
     <!-- <e-column headerText="To do" keyField="Open" allowToggle="true"></e-column>
     <e-column headerText="In Progress" keyField="InProgress" allowToggle="true"></e-column>
     <e-column headerText="Testing" keyField="Testing" allowToggle="true"></e-column>
     <e-column headerText="Done" keyField="Close" allowToggle="true"></e-column> -->
-    <e-column *ngFor="let column of columns" [keyField]="column.keyField" [allowToggle]="column.allowToggle">
+  <e-column *ngFor="let column of columns" [keyField]="column.keyField" [allowToggle]="column.allowToggle">
 
 
 <ng-template #template let-data>
       <div>{{ column.headerText }}</div>
-      <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
+        <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+           <mat-icon>menu</mat-icon>
+         </button>
 
  <mat-menu #menu="matMenu">
 
