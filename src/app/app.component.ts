@@ -20,14 +20,14 @@ import { CardSettingsModel,  } from '@syncfusion/ej2-angular-kanban';
 })
 export class AppComponent {
 
-
-
   columns = [
     { headerText: 'To do', keyField: 'Open', allowToggle: true },
     { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true },
     { headerText: 'Testing', keyField: 'Testing', allowToggle: true },
     { headerText: 'Done', keyField: 'Close', allowToggle: true }
   ];
+avantColumn: any;
+apresColumn: any;
 
 onColumnDrop(event: CdkDragDrop<any[]>): void {
   moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
@@ -198,7 +198,6 @@ getTaskCount(keyField: string): number {
   return this.data.filter(task => task.Status === keyField).length;
 }
 
-
 removeColumn(column: any): void {
   const index = this.columns.indexOf(column);
   if (index > -1) {
@@ -214,19 +213,42 @@ modifyColumnTitle(column: any): void {
 }
 
 addColumn(): void {
-  const columnName = prompt('Enter the name:');
-  if (columnName) {
-    const position = Number(prompt('Enter the index position :'));
-    if (position >= 1 && position <= 8) {
-      const newColumn = {
-        headerText: columnName,
-        keyField: columnName.replace(/\s/g, ''),
-        allowToggle: true
-      };
-      this.columns.splice(position - 1, 0, newColumn);
+  const columnName = prompt('Enter the name of the column:');
+if (columnName) {
+  const targetColumnIndex = this.columns.findIndex(column => column.headerText === columnName);
+  const newColumn = {
+    headerText: columnName,
+    keyField: columnName.replace(/\s/g, ''),
+    allowToggle: true
+  };
+  if (targetColumnIndex === -1) {
+    const position = prompt('Enter the name of the column before which you want to add the new column:');
+    const insertIndex = this.columns.findIndex(column => column.headerText === position);
+    if (insertIndex !== -1) {
+      this.columns.splice(insertIndex, 0, newColumn);
     } else {
-      alert('Invalid index position. Column not added.');
+      this.columns.push(newColumn);
     }
+  }
+}
+}
+
+
+switchColumnLeft(column: any): void {
+  const index = this.columns.indexOf(column);
+  if (index > 0) {
+    const temp = this.columns[index - 1];
+    this.columns[index - 1] = column;
+    this.columns[index] = temp;
+  }
+}
+
+switchColumnRight(column: any): void {
+  const index = this.columns.indexOf(column);
+  if (index < this.columns.length - 1) {
+    const temp = this.columns[index + 1];
+    this.columns[index + 1] = column;
+    this.columns[index] = temp;
   }
 }
 
@@ -235,8 +257,6 @@ taskCount: number = 0;
 inCount() {
   this.taskCount++;
 }
-
-
   title = 'kanban-project';
   public cardSettings: CardSettingsModel = {
     contentField: 'Summary',
