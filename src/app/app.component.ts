@@ -37,7 +37,7 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
     {
       "Id": "Task 1",
       "Title": "Task - 29001",
-      "Status": "InProgress",
+      "Status": "Close",
       "Summary": " issues reported by the customer.",
       "Type": "Story",
       "Priority": "High",
@@ -48,7 +48,7 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
   {
     "Id": "Task 2",
     "Title": "Task - 29002",
-    "Status": "Open",
+    "Status": "Close",
     "Summary": "  the customer.",
     "Type": "Story",
     "Priority": "High",
@@ -59,7 +59,7 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
 {
   "Id": "Task 3",
   "Title": "Task - 29003",
-  "Status": "InProgress",
+  "Status": "Testing",
   "Summary": "  the test and customer.",
   "Type": "Story",
   "Priority": "High",
@@ -81,7 +81,7 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
 {
   "Id": "Task 5",
   "Title": "Task - 29005",
-  "Status": "Open",
+  "Status": "Close",
   "Summary": "  test this part in task and i need complete  .",
   "Type": "Story",
   "Priority": "High",
@@ -103,7 +103,7 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
 {
   "Id": "Task 7",
   "Title": "Task - 29007",
-  "Status": "Open",
+  "Status": "Testing",
   "Summary": "  test this part in task and i need complete  .",
   "Type": "Story",
   "Priority": "High",
@@ -114,7 +114,7 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
 {
     "Id": "Task 8",
     "Title": "Task - 29008",
-    "Status": "Close",
+    "Status": "InProgress",
     "Summary": "Test the application in the IE browser.",
     "Type": "Story",
     "Priority": "Low",
@@ -124,7 +124,7 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
 {
     "Id": "Task 9",
     "Title": "Task - 29009",
-    "Status": "Testing",
+    "Status": "InProgress",
     "Summary": "Testing the issues reported by the customer.",
     "Type": "Story",
     "Priority": "High",
@@ -144,14 +144,53 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
 {
   "Id": "Task 11",
   "Title": "Task - 29011",
-  "Status": "Testing",
+  "Status": "Open",
   "Summary": "Show the retrieved data ",
   "Type": "Story",
   "Priority": "High",
   "Estimate": 5.5,
   "Assignee": "Margaret hamilt"
 },
-
+{
+  "Id": "Task 12",
+  "Title": "Task - 29012",
+  "Status": "Open",
+  "Summary": "Show the retrieved data ",
+  "Type": "Story",
+  "Priority": "High",
+  "Estimate": 5.5,
+  "Assignee": "Margaret hamilt"
+},
+{
+  "Id": "Task 13",
+  "Title": "Task - 29013",
+  "Status": "Open",
+  "Summary": "Show the retrieved data ",
+  "Type": "Story",
+  "Priority": "High",
+  "Estimate": 5.5,
+  "Assignee": "Margaret hamilt"
+},
+{
+  "Id": "Task 14",
+  "Title": "Task - 29013",
+  "Status": "Open",
+  "Summary": "Show the retrieved data ",
+  "Type": "Story",
+  "Priority": "High",
+  "Estimate": 5.5,
+  "Assignee": "Margaret hamilt"
+},
+{
+  "Id": "Task 14",
+  "Title": "Task - 29013",
+  "Status": "Open",
+  "Summary": "Show the retrieved data ",
+  "Type": "Story",
+  "Priority": "High",
+  "Estimate": 5.5,
+  "Assignee": "Margaret hamilt"
+},
 ];
 
 
@@ -190,6 +229,7 @@ addColumn(): void {
     }
   }
 }
+
 taskCount: number = 0;
 
 inCount() {

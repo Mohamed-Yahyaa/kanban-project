@@ -21,10 +21,10 @@
 
 <button  mat-flat-button  class="material-symbols-outlined-1"(click)="addColumn()" > <mat-icon>add_box</mat-icon></button>
 
-<div class="kanban-column" *ngFor="let column of columns; let i = index" cdkDrag (cdkDragEnded)="onColumnDrop($event)">
-  <!-- Column content -->
 
-</div>
+
+
+
 
 <ejs-kanban #kanbanObj keyField="Status" [dataSource]="data" [cardSettings]="cardSettings" width="auto" height="auto">
   <e-columns>
@@ -56,11 +56,12 @@
 
 
 </ng-template>
+
+
   </e-column>
 
   </e-columns>
 </ejs-kanban>
-
 
 
 
