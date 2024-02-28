@@ -21,9 +21,7 @@
 
 <button  mat-flat-button  class="material-symbols-outlined-1"(click)="addColumn()" > <mat-icon>add_box</mat-icon></button>
 
-
-
-
+<button  mat-flat-button  class="material-symbols-outlined-2"(click)="toggleDeleteButtonsVisibility()" > <mat-icon>settings</mat-icon></button>
 
 
 <ejs-kanban #kanbanObj keyField="Status" [dataSource]="data" [cardSettings]="cardSettings" width="auto" height="auto">
@@ -37,36 +35,25 @@
 
 <ng-template #template let-data>
       <div>{{ column.headerText }}</div>
+
         <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
            <mat-icon>menu</mat-icon>
          </button>
+          <button *ngIf="column.showDeleteButton"  mat-menu-item class="material-symbols-outlined-3" (click)="removeColumn(column)"><mat-icon>cancel</mat-icon></button>
 
  <mat-menu #menu="matMenu">
-
     <button mat-menu-item (click)="addColumn()">Add</button>
-
     <button mat-menu-item (click)="modifyColumnTitle(column)">Edit</button>
-
-    <button mat-menu-item (click)="removeColumn(column)">Remove</button>
-
-    <button mat-menu-item (click)="switchColumnLeft(apresColumn)">Column</button>
-
-    <button mat-menu-item (click)="switchColumnRight(apresColumn)">switch </button>
-
-
+    <button mat-menu-item (click)="switchColumn(columns.indexOf(column), columns.indexOf(column) - 1)" [disabled]="columns.indexOf(column) === 0">left</button>
+    <button mat-menu-item (click)="switchColumn(columns.indexOf(column), columns.indexOf(column) + 1)" [disabled]="columns.indexOf(column) ===  -1">right</button>
+    <button mat-menu-item (click)="changePositionIndex(column)">Change</button>
 
  </mat-menu>
-
-
  <mat-icon class="material-symbols-outlined" matBadge= {{getTaskCount(column.keyField)}} matBadgeSize="medium" matBadgeColor="primary">task</mat-icon>
-
-
 </ng-template>
-
-
   </e-column>
-
   </e-columns>
+
 </ejs-kanban>
 
 

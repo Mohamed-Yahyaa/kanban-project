@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from '@angular/core';
 // import { kanbanData } from './datasource';
-import { CardSettingsModel,  } from '@syncfusion/ej2-angular-kanban';
+import { CardSettingsModel, ColumnDirective, KanbanComponent, KanbanModule } from '@syncfusion/ej2-angular-kanban';
 
 
 @Component({
@@ -19,20 +19,13 @@ import { CardSettingsModel,  } from '@syncfusion/ej2-angular-kanban';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
+  @ViewChild("kanbanObj") kanbanObj: KanbanComponent;
   columns = [
-    { headerText: 'To do', keyField: 'Open', allowToggle: true },
-    { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true },
-    { headerText: 'Testing', keyField: 'Testing', allowToggle: true },
-    { headerText: 'Done', keyField: 'Close', allowToggle: true }
+    { headerText: 'To do', keyField: 'Open', allowToggle: true, Data : [] },
+    { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true,Data : []  },
+    { headerText: 'Testing', keyField: 'Testing', allowToggle: true ,Data : []  },
+    { headerText: 'Done', keyField: 'Close', allowToggle: true ,Data : []  }
   ];
-avantColumn: any;
-apresColumn: any;
-
-onColumnDrop(event: CdkDragDrop<any[]>): void {
-  moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
-}
-
    data: any[] = [
     {
       "Id": "Task 1",
@@ -181,18 +174,32 @@ onColumnDrop(event: CdkDragDrop<any[]>): void {
   "Estimate": 5.5,
   "Assignee": "Margaret hamilt"
 },
-{
-  "Id": "Task 14",
-  "Title": "Task - 29013",
-  "Status": "Open",
-  "Summary": "Show the retrieved data ",
-  "Type": "Story",
-  "Priority": "High",
-  "Estimate": 5.5,
-  "Assignee": "Margaret hamilt"
-},
+
 ];
 
+switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
+  const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
+  if (sourceColumn) {
+    this.kanbanObj.columns[sourceColumnIndex] = this.kanbanObj.columns[targetColumnIndex];
+    this.kanbanObj.columns[targetColumnIndex] = sourceColumn;
+    this.kanbanObj.columns = [...this.kanbanObj.columns];
+  }
+}
+
+changePositionIndex(column: any): void {
+  const newPosition = prompt('Enter the new position index for the column:');
+  if (newPosition !== null) {
+    const targetIndex = parseInt(newPosition, 10);
+    if (!isNaN(targetIndex) && targetIndex >= 0 && targetIndex < this.columns.length) {
+      const currentIndex = this.columns.indexOf(column);
+      if (currentIndex !== targetIndex) {
+        this.switchColumn(currentIndex, targetIndex);
+      }
+    } else {
+      alert('Invalid position index!');
+    }
+  }
+}
 
 getTaskCount(keyField: string): number {
   return this.data.filter(task => task.Status === keyField).length;
@@ -212,6 +219,12 @@ modifyColumnTitle(column: any): void {
   }
 }
 
+toggleDeleteButtonsVisibility(): void {
+  this.columns.forEach((column: any) => {
+    column.showDeleteButton = !column.showDeleteButton;
+  });
+}
+
 addColumn(): void {
   const columnName = prompt('Enter the name of the column:');
 if (columnName) {
@@ -219,7 +232,8 @@ if (columnName) {
   const newColumn = {
     headerText: columnName,
     keyField: columnName.replace(/\s/g, ''),
-    allowToggle: true
+    allowToggle: true,
+    Data: []
   };
   if (targetColumnIndex === -1) {
     const position = prompt('Enter the name of the column before which you want to add the new column:');
@@ -231,25 +245,6 @@ if (columnName) {
     }
   }
 }
-}
-
-
-switchColumnLeft(column: any): void {
-  const index = this.columns.indexOf(column);
-  if (index > 0) {
-    const temp = this.columns[index - 1];
-    this.columns[index - 1] = column;
-    this.columns[index] = temp;
-  }
-}
-
-switchColumnRight(column: any): void {
-  const index = this.columns.indexOf(column);
-  if (index < this.columns.length - 1) {
-    const temp = this.columns[index + 1];
-    this.columns[index + 1] = column;
-    this.columns[index] = temp;
-  }
 }
 
 taskCount: number = 0;
