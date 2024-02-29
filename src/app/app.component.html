@@ -32,11 +32,11 @@
     <e-column headerText="Done" keyField="Close" allowToggle="true"></e-column> -->
   <e-column *ngFor="let column of columns" [keyField]="column.keyField" [allowToggle]="column.allowToggle">
 
-
 <ng-template #template let-data>
       <div>{{ column.headerText }}</div>
-
-        <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button color="accent" aria-label="Example icon button with a menu icon">
+      <mat-icon class="material-symbols-outlined" matBadge= {{getTaskCount(column.keyField)}} matBadgeSize="medium" matBadgeColor="primary"></mat-icon>
+      <button  mat-flat-button  class="material-symbols-outlined-4" (click)="createTask()"><mat-icon>add_circle</mat-icon></button>
+        <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button  aria-label="Example icon button with a menu icon">
            <mat-icon>menu</mat-icon>
          </button>
           <button *ngIf="column.showDeleteButton"  mat-menu-item class="material-symbols-outlined-3" (click)="removeColumn(column)"><mat-icon>cancel</mat-icon></button>
@@ -44,12 +44,12 @@
  <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="addColumn()">Add</button>
     <button mat-menu-item (click)="modifyColumnTitle(column)">Edit</button>
-    <button mat-menu-item (click)="switchColumn(columns.indexOf(column), columns.indexOf(column) - 1)" [disabled]="columns.indexOf(column) === 0">left</button>
-    <button mat-menu-item (click)="switchColumn(columns.indexOf(column), columns.indexOf(column) + 1)" [disabled]="columns.indexOf(column) ===  -1">right</button>
+    <button mat-menu-item (click)="switchColumn(columns.indexOf(column), columns.indexOf(column) - 1)" [disabled]="columns.indexOf(column) === 0">avant</button>
+    <button mat-menu-item (click)="switchColumn(columns.indexOf(column), columns.indexOf(column) + 1)" [disabled]="columns.indexOf(column) === -1">après</button>
     <button mat-menu-item (click)="changePositionIndex(column)">Change</button>
 
  </mat-menu>
- <mat-icon class="material-symbols-outlined" matBadge= {{getTaskCount(column.keyField)}} matBadgeSize="medium" matBadgeColor="primary">task</mat-icon>
+
 </ng-template>
   </e-column>
   </e-columns>

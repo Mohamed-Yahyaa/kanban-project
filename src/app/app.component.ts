@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { Data } from '@angular/router';
 // import { kanbanData } from './datasource';
 import { CardSettingsModel, ColumnDirective, KanbanComponent, KanbanModule } from '@syncfusion/ej2-angular-kanban';
 
@@ -19,6 +20,14 @@ import { CardSettingsModel, ColumnDirective, KanbanComponent, KanbanModule } fro
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  ngOnInit() {
+    const savedData = localStorage.getItem('kanbanData');
+    if (savedData) {
+      this.columns = JSON.parse(savedData);
+    }
+  }
+
   @ViewChild("kanbanObj") kanbanObj: KanbanComponent;
   columns = [
     { headerText: 'To do', keyField: 'Open', allowToggle: true, Data : [] },
@@ -26,6 +35,7 @@ export class AppComponent {
     { headerText: 'Testing', keyField: 'Testing', allowToggle: true ,Data : []  },
     { headerText: 'Done', keyField: 'Close', allowToggle: true ,Data : []  }
   ];
+
    data: any[] = [
     {
       "Id": "Task 1",
@@ -246,6 +256,23 @@ if (columnName) {
   }
 }
 }
+
+createTask(): void {
+  const newTask: Data = {
+    Id: "Task 15",
+  Title: "Task - 29015",
+  Status: "Close",
+  Summary: "Show ytr retrieved data ",
+  Type: "Story",
+  Priority: "High",
+  Estimate: 5.5,
+  Assignee: "Margaret hamilt"
+  };
+  this.data.push(newTask);
+
+  console.log(this.data);
+}
+
 
 taskCount: number = 0;
 
