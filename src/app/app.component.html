@@ -17,8 +17,17 @@
 
 
 
+<form (submit)="submitForm()" #taskForm="ngForm">
+  <label for="Id">Id</label>
+  <input type="text" id="Id" [(ngModel)]="newTask.Id" name="Id" required>
 
+  <label for="Summary">Summary</label>
+  <input type="text" id="Summary" [(ngModel)]="newTask.Summary" name="Summary" required>
 
+  <button type="submit" [disabled]="!taskForm.form.valid">Add New Task</button>
+
+</form>
+<button mat-button (click)="openDialog()">Open Dialog</button>
 <button  mat-flat-button  class="material-symbols-outlined-1"(click)="addColumn()" > <mat-icon>add_box</mat-icon></button>
 
 <button  mat-flat-button  class="material-symbols-outlined-2"(click)="toggleDeleteButtonsVisibility()" > <mat-icon>settings</mat-icon></button>
@@ -35,7 +44,7 @@
 <ng-template #template let-data>
       <div>{{ column.headerText }}</div>
       <mat-icon class="material-symbols-outlined" matBadge= {{getTaskCount(column.keyField)}} matBadgeSize="medium" matBadgeColor="primary"></mat-icon>
-      <button  mat-flat-button  class="material-symbols-outlined-4" (click)="createTask()"><mat-icon>add_circle</mat-icon></button>
+      <!-- <button  mat-flat-button  class="material-symbols-outlined-4" (click)="createTask()"><mat-icon>add_circle</mat-icon></button> -->
         <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button  aria-label="Example icon button with a menu icon">
            <mat-icon>menu</mat-icon>
          </button>

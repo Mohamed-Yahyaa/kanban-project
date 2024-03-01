@@ -1,0 +1,10 @@
+<form (submit)="submitForm()" #taskForm="ngForm">
+  <label for="Id">Id</label>
+  <input type="text" id="Id" [(ngModel)]="newTask.Id" name="Id" required>
+
+  <label for="Summary">Summary</label>
+  <input type="text" id="Summary" [(ngModel)]="newTask.Summary" name="Summary" required>
+
+  <button type="submit" [disabled]="!taskForm.form.valid">Add New Task</button>
+
+</form>

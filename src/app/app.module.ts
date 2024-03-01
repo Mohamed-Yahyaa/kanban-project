@@ -12,16 +12,23 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { StepperModule, StepperAllModule } from '@syncfusion/ej2-angular-navigations';
+import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { DialogComponent } from './dialog/dialog.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    DragComponent
+    DragComponent,
+    DialogComponent,
+
   ],
   imports: [
     BrowserModule, KanbanModule, BrowserAnimationsModule,
     MatMenuModule, MatIconModule, MatButtonModule,
-    MatBadgeModule ,DragDropModule ,StepperModule, StepperAllModule
+    MatBadgeModule ,DragDropModule ,StepperModule, StepperAllModule,FormsModule,MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

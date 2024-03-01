@@ -1,8 +1,12 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, ViewChild, ViewContainerRef } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Data } from '@angular/router';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 // import { kanbanData } from './datasource';
 import { CardSettingsModel, ColumnDirective, KanbanComponent, KanbanModule } from '@syncfusion/ej2-angular-kanban';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @Component({
@@ -20,13 +24,25 @@ import { CardSettingsModel, ColumnDirective, KanbanComponent, KanbanModule } fro
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  // ngOnInit() {
+  //   const savedData = localStorage.getItem('kanbanData');
+  //   if (savedData) {
+  //     this.columns = JSON.parse(savedData);
+  //   }
+  // }
 
-  ngOnInit() {
-    const savedData = localStorage.getItem('kanbanData');
-    if (savedData) {
-      this.columns = JSON.parse(savedData);
-    }
-  }
+  newTask: any = {
+    Id: "",
+    Title: "",
+    Status: "",
+    Summary: "",
+    Type: "",
+    Priority: "",
+    Estimate: "",
+    Assignee: "",
+    // Add other properties here
+  };
+
 
   @ViewChild("kanbanObj") kanbanObj: KanbanComponent;
   columns = [
@@ -187,6 +203,8 @@ export class AppComponent {
 
 ];
 
+constructor(private dialog: MatDialog) { }
+
 switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
   const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
   if (sourceColumn) {
@@ -195,6 +213,18 @@ switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
     this.kanbanObj.columns = [...this.kanbanObj.columns];
   }
 }
+
+openDialog(): void {
+  const dialogRef = this.dialog.open(DialogComponent, {
+    width: '400px', // Adjust the width as per your requirement
+    data: {} // Pass any data you need to the dialog component
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    // Handle the result after the dialog is closed
+  });
+}
+
 
 changePositionIndex(column: any): void {
   const newPosition = prompt('Enter the new position index for the column:');
@@ -211,6 +241,10 @@ changePositionIndex(column: any): void {
   }
 }
 
+isFormValid(): boolean {
+  return this.newTask.Title.trim().length > 0 && this.newTask.Status.trim().length > 0;
+  // Add other validation rules for remaining properties if needed
+}
 getTaskCount(keyField: string): number {
   return this.data.filter(task => task.Status === keyField).length;
 }
@@ -257,25 +291,19 @@ if (columnName) {
 }
 }
 
-createTask(): void {
-  const newTask: Data = {
-    Id: "Task 15",
-  Title: "Task - 29015",
-  Status: "Close",
-  Summary: "Show ytr retrieved data ",
-  Type: "Story",
-  Priority: "High",
-  Estimate: 5.5,
-  Assignee: "Margaret hamilt"
-  };
-  this.data.push(newTask);
+submitForm(): void {
+  if (this.isFormValid()) {
+    this.data.push({...this.newTask});
+    // Save the updated data to localStorage
+    localStorage.setItem('kanbanData', JSON.stringify(this.data));
 
-  console.log(this.data);
+    // Reset the form
+    this.newTask = {};
+  }
+  console.log(this.newTask)
 }
 
-
 taskCount: number = 0;
-
 inCount() {
   this.taskCount++;
 }
@@ -286,7 +314,5 @@ inCount() {
 };
 
 // public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' ,   allowDragAndDrop: true};
-
-
 
 }
