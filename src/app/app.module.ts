@@ -11,11 +11,17 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatBadgeModule} from '@angular/material/badge';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { StepperModule, StepperAllModule } from '@syncfusion/ej2-angular-navigations';
+
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { DialogComponent } from './dialog/dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+import { MatSelectModule } from '@angular/material/select';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+import {MatStepperModule} from '@angular/material/stepper';
 
 
 @NgModule({
@@ -24,11 +30,15 @@ import { DialogComponent } from './dialog/dialog.component';
     DragComponent,
     DialogComponent,
 
+
+
   ],
   imports: [
     BrowserModule, KanbanModule, BrowserAnimationsModule,
     MatMenuModule, MatIconModule, MatButtonModule,
-    MatBadgeModule ,DragDropModule ,StepperModule, StepperAllModule,FormsModule,MatDialogModule
+    MatBadgeModule ,DragDropModule ,FormsModule,MatDialogModule,
+    MatInputModule,    MatFormFieldModule
+    ,MatSelectModule,DropDownListModule,MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
