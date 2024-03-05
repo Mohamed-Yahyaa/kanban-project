@@ -62,6 +62,11 @@ export class AppComponent {
   ];
 
   data = data;
+  Status: any;
+  Summary: any;
+firstCtrl: any;
+secondCtrl: any;
+isLinear: any;
 
 
   constructor(private dialog: MatDialog) {
@@ -77,27 +82,42 @@ export class AppComponent {
     }
   }
 
-  openDialog(): void {
+  openDialog(item:any): void {
   const dialogRef = this.dialog.open(DialogComponent, {
-  width: '400px', // Adjust the width as per your requirement
-  data: {} // Pass any data you need to the dialog component
+  width: '1400px',  // Adjust the width as per your requirement
+  data: item // Pass any data you need to the dialog component
   });
 
   dialogRef.afterClosed().subscribe(result => {
   // Handle the result after the dialog is closed
+
+  if (result) {
+    // Find the index of the updated item
+    const index = this.data.findIndex((d) => d.Id === result.Id);
+
+    // If the item exists, update it in the data array
+    if (index !== -1) {
+      this.data[index] = result;
+    }
+  }
   });
   }
 
-  openDial(data): void {
-    const dialogRef = this.dialog.open(StepperComponent, {
-    width: '400px', // Adjust the width as per your requirement
-    data: {} // Pass any data you need to the dialog component
-    });
+  // openDial(data): void {
+  //   const dialogRef = this.dialog.open(StepperComponent, {
+  //   width: '400px',
+  //   data: {status: this.Status, summary: this.Summary }
+  //   });
 
-    dialogRef.afterClosed().subscribe(result => {
-    // Handle the result after the dialog is closed
-    });
-    }
+  //   dialogRef.afterClosed().subscribe(result => {
+
+  //   if (result) {
+
+  //     this.Status = result.status;
+  //     this.Summary = result.summary;
+  //   }
+  //   });
+  //   }
 
 
   changePositionIndex(column: any): void {
@@ -165,6 +185,7 @@ export class AppComponent {
     }
   }
 
+
   submitForm(): void {
     if (this.isFormValid()) {
       this.data.push({...this.newTask});
@@ -190,8 +211,9 @@ export class AppComponent {
   handleActionBegin(event: DialogEventArgs){
     event.cancel = true;
     const {data}= event;
-    this.openDial(data)
+    this.openDialog(data)
   }
+
 
   // public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' ,   allowDragAndDrop: true};
 }

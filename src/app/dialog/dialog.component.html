@@ -1,4 +1,4 @@
-<form (submit)="submitForm()" #taskForm="ngForm">
+<!-- <form (submit)="submitForm()" #taskForm="ngForm">
   <label for="Id">Id</label>
   <input type="text" id="Id" [(ngModel)]="newTask.Id" name="Id" required>
 
@@ -7,4 +7,61 @@
 
   <button type="submit" [disabled]="!taskForm.form.valid">Add New Task</button>
 
-</form>
+      </form> -->
+      <div class="iconWithLabel">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper [selectedIndex]="getStepIndex(newTask.Status)">
+          <mat-step [stepControl]="firstStepForm" id="1">
+            <ng-template matStepLabel>
+              <mat-icon>check_circle</mat-icon> Todo
+            </ng-template>
+            <form #firstStepForm="ngForm">
+              <!-- Step 1 content -->
+            </form>
+          </mat-step>
+          <mat-step id="2">
+            <ng-template matStepLabel>
+              <mat-icon>hourglass_empty</mat-icon> In Progress
+            </ng-template>
+            <!-- Step 2 content -->
+          </mat-step>
+          <mat-step id="3">
+            <ng-template matStepLabel>
+              <mat-icon>build</mat-icon> Testing
+            </ng-template>
+            <!-- Step 3 content -->
+          </mat-step>
+          <mat-step id="4">
+            <ng-template matStepLabel>
+              <mat-icon>done_all</mat-icon> Done
+            </ng-template>
+            <!-- Step 4 content -->
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+      <h1 mat-dialog-title class="h">Edit Task</h1>
+      <div mat-dialog-content class="dial">
+        <form [formGroup]="firstFormGroup">
+          <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="firstCtrl" [(ngModel)]="newTask.Status" (selectionChange)="updateStepIndex()">
+              <mat-option value="Open">Open</mat-option>
+              <mat-option value="InProgress">InProgress</mat-option>
+              <mat-option value="Testing">Testing</mat-option>
+              <mat-option value="Close">Close</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+
+
+
+        <form [formGroup]="secondFormGroup">
+          <mat-form-field appearance="fill">
+            <mat-label>Summary</mat-label>
+            <textarea matInput formControlName="secondCtrl" [(ngModel)]="newTask.Summary"></textarea>
+          </mat-form-field>
+        </form>
+      </div>
+      <div mat-dialog-actions>
+        <button class="but" mat-button (click)="saveChanges()">Save</button>
+        <button mat-button (click)="closeDialog()">Cancel</button>
+      </div>

@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -8,20 +8,38 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent implements OnInit {
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
 
+  constructor(
+    private _formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<StepperComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
 
-firstFormGroup: FormGroup;
-secondFormGroup: FormGroup;
+  ngOnInit(): void {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+  }
 
-constructor(private _formBuilder: FormBuilder) {}
+  openEditPopup() {
+    document.getElementById("editPopup").style.display = "block";
+  }
 
-ngOnInit() {
-  this.firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required]
-  });
-  this.secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required]
-  });
-}
+  closeEditPopup() {
+    document.getElementById("editPopup").style.display = "none";
+  }
 
+  saveChanges() {
+    const status = (document.getElementById("Status") as HTMLInputElement).value;
+    const summary = (document.getElementById("Summary") as HTMLTextAreaElement).value;
+
+    // Perform any necessary logic with the updated status and summary
+
+    this.closeEditPopup();
+  }
 }
