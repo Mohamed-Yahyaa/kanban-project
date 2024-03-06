@@ -33,12 +33,7 @@ import { StepperComponent } from './stepper/stepper.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  // ngOnInit() {
-  //   const savedData = localStorage.getItem('kanbanData');
-  //   if (savedData) {
-  //     this.columns = JSON.parse(savedData);
-  //   }
-  // }
+
 
   newTask: any = {
     Id: '',
@@ -55,13 +50,13 @@ export class AppComponent {
 
   @ViewChild("kanbanObj") kanbanObj: KanbanComponent;
   columns = [
-    { headerText: 'To do', keyField: 'Open', allowToggle: true, Data : [] },
-    { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true,Data : []  },
-    { headerText: 'Testing', keyField: 'Testing', allowToggle: true ,Data : []  },
-    { headerText: 'Done', keyField: 'Close', allowToggle: true ,Data : []  }
+    { headerText: 'To do', keyField: 'Open', allowToggle: true },
+    { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true  },
+    { headerText: 'Testing', keyField: 'Testing', allowToggle: true ,  },
+    { headerText: 'Done', keyField: 'Close', allowToggle: true   }
   ];
 
-  data = data;
+  data = [];
   Status: any;
   Summary: any;
 firstCtrl: any;
@@ -71,53 +66,63 @@ isLinear: any;
 
   constructor(private dialog: MatDialog) {
   }
+    ngOnInit() {
+    const savedData = localStorage.getItem('kanbanData');
+    const savedColumns = localStorage.getItem("kanbanColumns")
+    if (savedData) {
+      setTimeout(()=> {
+        this.data = JSON.parse(savedData);
+        if(savedColumns){
+          this.columns = JSON.parse(savedColumns);
+        }
+        //this.reorderColumns();
+      }, 1000)
+    }
+  }
+
 
   switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
     const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
     if (sourceColumn) {
-      this.kanbanObj.columns[sourceColumnIndex] =
-        this.kanbanObj.columns[targetColumnIndex];
+      this.kanbanObj.columns[sourceColumnIndex] = this.kanbanObj.columns[targetColumnIndex];
       this.kanbanObj.columns[targetColumnIndex] = sourceColumn;
       this.kanbanObj.columns = [...this.kanbanObj.columns];
+      console.log(this.kanbanObj.columns)
+      localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
     }
   }
-
+  reorderColumns(){
+    if(!this.kanbanObj) return;
+    console.log(this.kanbanObj.columns)
+    const kanbanColumns = [...this.kanbanObj.columns]
+    this.columns.forEach((column, index)=> {
+      const kanbanColumnIndex = kanbanColumns.findIndex((c)=> c.keyField === column.keyField);
+      if(kanbanColumnIndex !== -1) {
+        const kanbanColumn = kanbanColumns.splice(kanbanColumnIndex, 1)[0];
+        kanbanColumns.splice(index, 0, kanbanColumn);
+      }
+    });
+    console.log(this.kanbanObj.columns, kanbanColumns)
+    //this.kanbanObj.columns = [...kanbanColumns];
+  }
   openDialog(item:any): void {
   const dialogRef = this.dialog.open(DialogComponent, {
-  width: '1400px',  // Adjust the width as per your requirement
-  data: item // Pass any data you need to the dialog component
+  width: '1400px',
+  data: item
   });
 
   dialogRef.afterClosed().subscribe(result => {
-  // Handle the result after the dialog is closed
 
   if (result) {
-    // Find the index of the updated item
     const index = this.data.findIndex((d) => d.Id === result.Id);
 
-    // If the item exists, update it in the data array
     if (index !== -1) {
       this.data[index] = result;
+      localStorage.setItem('kanbanData', JSON.stringify(this.data));
     }
   }
   });
   }
-
-  // openDial(data): void {
-  //   const dialogRef = this.dialog.open(StepperComponent, {
-  //   width: '400px',
-  //   data: {status: this.Status, summary: this.Summary }
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-
-  //   if (result) {
-
-  //     this.Status = result.status;
-  //     this.Summary = result.summary;
-  //   }
-  //   });
-  //   }
 
 
   changePositionIndex(column: any): void {
@@ -137,7 +142,7 @@ isLinear: any;
 
   isFormValid(): boolean {
     return this.newTask.Title.trim().length > 0 && this.newTask.Status.trim().length > 0;
-    // Add other validation rules for remaining properties if needed
+
   }
   getTaskCount(keyField: string): number {
     return this.data.filter(task => task.Status === keyField).length;
@@ -147,6 +152,7 @@ isLinear: any;
     const index = this.columns.indexOf(column);
     if (index > -1) {
       this.columns.splice(index, 1);
+      localStorage.setItem('savedColumns', JSON.stringify(this.columns));
     }
   }
 
@@ -154,6 +160,7 @@ isLinear: any;
     const newTitle = prompt('new column title:', column.headerText);
     if (newTitle) {
       column.headerText = newTitle;
+      localStorage.setItem('savedColumns', JSON.stringify(this.columns));
     }
   }
 
@@ -181,6 +188,8 @@ isLinear: any;
         } else {
           this.columns.push(newColumn);
         }
+        localStorage.setItem('savedColumns', JSON.stringify(this.columns));
+
       }
     }
   }
@@ -189,14 +198,13 @@ isLinear: any;
   submitForm(): void {
     if (this.isFormValid()) {
       this.data.push({...this.newTask});
-      // Save the updated data to localStorage
       localStorage.setItem('kanbanData', JSON.stringify(this.data));
-
-      // Reset the form
       this.newTask = {};
     }
     console.log(this.newTask)
   }
+
+
 
   taskCount: number = 0;
   inCount() {

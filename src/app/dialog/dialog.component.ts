@@ -11,11 +11,8 @@ export class DialogComponent implements OnInit {
   newTask: any;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
-
-isLinear: any;
+  isLinear: any;
   stepper: any;
-
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
@@ -24,7 +21,7 @@ isLinear: any;
   ) { }
 
   ngOnInit(): void {
-    this.newTask = { ...this.data }; // Create a copy of the data object
+    this.newTask = { ...this.data };
 
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: [this.newTask.Status, Validators.required]
@@ -32,6 +29,8 @@ isLinear: any;
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: [this.newTask.Summary, Validators.required]
     });
+
+    this.updateStepIndex();
   }
 
   saveChanges(): void {
@@ -40,6 +39,10 @@ isLinear: any;
 
     this.newTask.Status = newStatus;
     this.newTask.Summary = newSummary;
+
+    localStorage.setItem('kanbanData', JSON.stringify(this.newTask));
+
+
 
     this.dialogRef.close(this.newTask);
   }
@@ -67,6 +70,8 @@ isLinear: any;
     const selectedIndex = this.getStepIndex(this.newTask.Status);
     if (selectedIndex >= 0) {
       this.stepper.selectedIndex = selectedIndex;
+
+    localStorage.setItem('kanbanData', JSON.stringify(this.newTask));
     }
   }
 }
