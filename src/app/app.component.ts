@@ -52,11 +52,12 @@ export class AppComponent {
   columns = [
     { headerText: 'To do', keyField: 'Open', allowToggle: true },
     { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true  },
-    { headerText: 'Testing', keyField: 'Testing', allowToggle: true ,  },
-    { headerText: 'Done', keyField: 'Close', allowToggle: true   }
+    { headerText: 'Testing', keyField: 'Testing', allowToggle: true  },
+    { headerText: 'Done', keyField: 'Close', allowToggle: true }
   ];
 
-  data = [];
+  data = data;
+  // data = [];
   Status: any;
   Summary: any;
 firstCtrl: any;
@@ -66,45 +67,45 @@ isLinear: any;
 
   constructor(private dialog: MatDialog) {
   }
-    ngOnInit() {
-    const savedData = localStorage.getItem('kanbanData');
-    const savedColumns = localStorage.getItem("kanbanColumns")
-    if (savedData) {
-      setTimeout(()=> {
-        this.data = JSON.parse(savedData);
-        if(savedColumns){
-          this.columns = JSON.parse(savedColumns);
-        }
-        //this.reorderColumns();
-      }, 1000)
-    }
-  }
+  //   ngOnInit() {
+  //   const savedData = localStorage.getItem('kanbanData');
+  //   const savedColumns = localStorage.getItem("kanbanColumns")
+  //   if (savedData) {
+  //     setTimeout(()=> {
+  //       this.data = JSON.parse(savedData);
+  //       if(savedColumns){
+  //         //this.columns = JSON.parse(savedColumns);
+  //       }
+  //       //this.reorderColumns();
+  //     }, 1000)
+  //   }
+  // }
 
 
-  switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
-    const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
-    if (sourceColumn) {
-      this.kanbanObj.columns[sourceColumnIndex] = this.kanbanObj.columns[targetColumnIndex];
-      this.kanbanObj.columns[targetColumnIndex] = sourceColumn;
-      this.kanbanObj.columns = [...this.kanbanObj.columns];
-      console.log(this.kanbanObj.columns)
-      localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
-    }
-  }
-  reorderColumns(){
-    if(!this.kanbanObj) return;
-    console.log(this.kanbanObj.columns)
-    const kanbanColumns = [...this.kanbanObj.columns]
-    this.columns.forEach((column, index)=> {
-      const kanbanColumnIndex = kanbanColumns.findIndex((c)=> c.keyField === column.keyField);
-      if(kanbanColumnIndex !== -1) {
-        const kanbanColumn = kanbanColumns.splice(kanbanColumnIndex, 1)[0];
-        kanbanColumns.splice(index, 0, kanbanColumn);
-      }
-    });
-    console.log(this.kanbanObj.columns, kanbanColumns)
-    //this.kanbanObj.columns = [...kanbanColumns];
-  }
+  // switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
+  //   const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
+  //   if (sourceColumn) {
+  //     this.kanbanObj.columns[sourceColumnIndex] = this.kanbanObj.columns[targetColumnIndex];
+  //     this.kanbanObj.columns[targetColumnIndex] = sourceColumn;
+  //     this.kanbanObj.columns = [...this.kanbanObj.columns];
+  //     console.log(this.kanbanObj.columns)
+  //     localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
+  //   }
+  // }
+  // reorderColumns(){
+  //   if(!this.kanbanObj) return;
+  //   console.log(this.kanbanObj.columns)
+  //   const kanbanColumns = [...this.kanbanObj.columns]
+  //   this.columns.forEach((column, index)=> {
+  //     const kanbanColumnIndex = kanbanColumns.findIndex((c)=> c.keyField === column.keyField);
+  //     if(kanbanColumnIndex !== -1) {
+  //       const kanbanColumn = kanbanColumns.splice(kanbanColumnIndex, 1)[0];
+  //       kanbanColumns.splice(index, 0, kanbanColumn);
+  //     }
+  //   });
+  //   console.log(this.kanbanObj.columns, kanbanColumns)
+  //   //this.kanbanObj.columns = [...kanbanColumns];
+  // }
   openDialog(item:any): void {
   const dialogRef = this.dialog.open(DialogComponent, {
   width: '1400px',
@@ -125,20 +126,20 @@ isLinear: any;
   }
 
 
-  changePositionIndex(column: any): void {
-    const newPosition = prompt('Enter the new position index for the column:');
-    if (newPosition !== null) {
-      const targetIndex = parseInt(newPosition, 10);
-      if (!isNaN(targetIndex) && targetIndex >= 0 && targetIndex < this.columns.length) {
-        const currentIndex = this.columns.indexOf(column);
-        if (currentIndex !== targetIndex) {
-          this.switchColumn(currentIndex, targetIndex);
-        }
-      } else {
-        alert('Invalid position index!');
-      }
-    }
-  }
+  // changePositionIndex(column: any): void {
+  //   const newPosition = prompt('Enter the new position index for the column:');
+  //   if (newPosition !== null) {
+  //     const targetIndex = parseInt(newPosition, 10);
+  //     if (!isNaN(targetIndex) && targetIndex >= 0 && targetIndex < this.columns.length) {
+  //       const currentIndex = this.columns.indexOf(column);
+  //       if (currentIndex !== targetIndex) {
+  //         this.switchColumn(currentIndex, targetIndex);
+  //       }
+  //     } else {
+  //       alert('Invalid position index!');
+  //     }
+  //   }
+  // }
 
   isFormValid(): boolean {
     return this.newTask.Title.trim().length > 0 && this.newTask.Status.trim().length > 0;
@@ -178,7 +179,8 @@ isLinear: any;
         headerText: columnName,
         keyField: columnName.replace(/\s/g, ''),
         allowToggle: true,
-        Data: []
+        Data: [],
+        position: this.columns.length
       };
       if (targetColumnIndex === -1) {
         const position = prompt('Enter the name of the column before which you want to add the new column:');

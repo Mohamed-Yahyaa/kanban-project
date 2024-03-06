@@ -1,5 +1,6 @@
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -13,7 +14,6 @@ export class DialogComponent implements OnInit {
   secondFormGroup: FormGroup;
   isLinear: any;
   stepper: any;
-
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -73,5 +73,10 @@ export class DialogComponent implements OnInit {
 
     localStorage.setItem('kanbanData', JSON.stringify(this.newTask));
     }
+  }
+  onStatusChange(event: StepperSelectionEvent){
+    const index = event.selectedIndex;
+    this.newTask
+
   }
 }
