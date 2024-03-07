@@ -37,10 +37,10 @@ export class DialogComponent implements OnInit {
     const newStatus = this.firstFormGroup.get('firstCtrl')?.value;
     const newSummary = this.secondFormGroup.get('secondCtrl')?.value;
 
-    this.newTask.Status = newStatus;
     this.newTask.Summary = newSummary;
 
     localStorage.setItem('kanbanData', JSON.stringify(this.newTask));
+    localStorage.setItem('kanbanData', JSON.stringify(this.data));
 
 
 
@@ -66,17 +66,48 @@ export class DialogComponent implements OnInit {
     }
   }
 
+
+
+
+
+
   updateStepIndex(): void {
     const selectedIndex = this.getStepIndex(this.newTask.Status);
     if (selectedIndex >= 0) {
       this.stepper.selectedIndex = selectedIndex;
 
+
     localStorage.setItem('kanbanData', JSON.stringify(this.newTask));
     }
   }
-  onStatusChange(event: StepperSelectionEvent){
-    const index = event.selectedIndex;
-    this.newTask
+  // onStatusChange(event: StepperSelectionEvent){
+  //   const index = event.selectedIndex;
+  //   this.newTask
 
-  }
+  // }
+
+  onStatusChange(event: StepperSelectionEvent): void {
+    const index = event.selectedIndex;
+    console.log('Index:', index);
+
+    switch (index) {
+      case 0:
+        this.newTask.Status = 'Open';
+        break;
+      case 1:
+        this.newTask.Status = 'InProgress';
+        break;
+      case 2:
+        this.newTask.Status = 'Testing';
+        break;
+      case 3:
+        this.newTask.Status = 'Close';
+        break;
+      default:
+        break;
+    }
+    console.log('Status:', this.newTask.Status);
+
+}
+
 }

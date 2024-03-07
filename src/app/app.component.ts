@@ -50,62 +50,63 @@ export class AppComponent {
 
   @ViewChild("kanbanObj") kanbanObj: KanbanComponent;
   columns = [
-    { headerText: 'To do', keyField: 'Open', allowToggle: true },
-    { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true  },
-    { headerText: 'Testing', keyField: 'Testing', allowToggle: true  },
-    { headerText: 'Done', keyField: 'Close', allowToggle: true }
+{ headerText: 'To do', keyField: 'Open', allowToggle: true, position: 0 },
+    { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true, position: 1  },
+    { headerText: 'Testing', keyField: 'Testing', allowToggle: true , position: 2 },
+    { headerText: 'Done', keyField: 'Close', allowToggle: true, position: 3   }
   ];
 
   data = data;
-  // data = [];
+  // data:any[]= [];
   Status: any;
   Summary: any;
 firstCtrl: any;
 secondCtrl: any;
 isLinear: any;
 
-
   constructor(private dialog: MatDialog) {
   }
-  //   ngOnInit() {
-  //   const savedData = localStorage.getItem('kanbanData');
-  //   const savedColumns = localStorage.getItem("kanbanColumns")
-  //   if (savedData) {
-  //     setTimeout(()=> {
-  //       this.data = JSON.parse(savedData);
-  //       if(savedColumns){
-  //         //this.columns = JSON.parse(savedColumns);
-  //       }
-  //       //this.reorderColumns();
-  //     }, 1000)
-  //   }
-  // }
+    ngOnInit() {
+    const savedData = localStorage.getItem('kanbanData');
+    const savedColumns = localStorage.getItem("kanbanColumns")
+    if (savedData) {
 
 
-  // switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
-  //   const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
-  //   if (sourceColumn) {
-  //     this.kanbanObj.columns[sourceColumnIndex] = this.kanbanObj.columns[targetColumnIndex];
-  //     this.kanbanObj.columns[targetColumnIndex] = sourceColumn;
-  //     this.kanbanObj.columns = [...this.kanbanObj.columns];
-  //     console.log(this.kanbanObj.columns)
-  //     localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
-  //   }
-  // }
-  // reorderColumns(){
-  //   if(!this.kanbanObj) return;
-  //   console.log(this.kanbanObj.columns)
-  //   const kanbanColumns = [...this.kanbanObj.columns]
-  //   this.columns.forEach((column, index)=> {
-  //     const kanbanColumnIndex = kanbanColumns.findIndex((c)=> c.keyField === column.keyField);
-  //     if(kanbanColumnIndex !== -1) {
-  //       const kanbanColumn = kanbanColumns.splice(kanbanColumnIndex, 1)[0];
-  //       kanbanColumns.splice(index, 0, kanbanColumn);
-  //     }
-  //   });
-  //   console.log(this.kanbanObj.columns, kanbanColumns)
-  //   //this.kanbanObj.columns = [...kanbanColumns];
-  // }
+        if(savedColumns){
+          this.columns = JSON.parse(savedColumns);
+        }
+        this.reorderColumns();
+
+    }
+  }
+
+
+  switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
+    const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
+    if (sourceColumn) {
+      this.kanbanObj.columns[sourceColumnIndex] = this.kanbanObj.columns[targetColumnIndex];
+      this.kanbanObj.columns[targetColumnIndex] = sourceColumn;
+      this.kanbanObj.columns = [...this.kanbanObj.columns];
+      console.log(this.kanbanObj.columns)
+      localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
+    }
+  }
+  reorderColumns(){
+    if(!this.kanbanObj) return;
+    console.log(this.kanbanObj.columns)
+    const kanbanColumns = [...this.kanbanObj.columns]
+    this.columns.forEach((column, index)=> {
+      const kanbanColumnIndex = kanbanColumns.findIndex((c)=> c.keyField === column.keyField);
+      if(kanbanColumnIndex !== -1) {
+        const kanbanColumn = kanbanColumns.splice(kanbanColumnIndex, 1)[0];
+        kanbanColumns.splice(index, 0, kanbanColumn);
+      }
+    });
+    console.log(this.kanbanObj.columns, kanbanColumns)
+    //this.kanbanObj.columns = [...kanbanColumns];
+  }
+
+
   openDialog(item:any): void {
   const dialogRef = this.dialog.open(DialogComponent, {
   width: '1400px',
@@ -119,6 +120,7 @@ isLinear: any;
 
     if (index !== -1) {
       this.data[index] = result;
+      this.data = this.data.concat()
       localStorage.setItem('kanbanData', JSON.stringify(this.data));
     }
   }
@@ -126,20 +128,20 @@ isLinear: any;
   }
 
 
-  // changePositionIndex(column: any): void {
-  //   const newPosition = prompt('Enter the new position index for the column:');
-  //   if (newPosition !== null) {
-  //     const targetIndex = parseInt(newPosition, 10);
-  //     if (!isNaN(targetIndex) && targetIndex >= 0 && targetIndex < this.columns.length) {
-  //       const currentIndex = this.columns.indexOf(column);
-  //       if (currentIndex !== targetIndex) {
-  //         this.switchColumn(currentIndex, targetIndex);
-  //       }
-  //     } else {
-  //       alert('Invalid position index!');
-  //     }
-  //   }
-  // }
+  changePositionIndex(column: any): void {
+    const newPosition = prompt('Enter the new position index for the column:');
+    if (newPosition !== null) {
+      const targetIndex = parseInt(newPosition, 10);
+      if (!isNaN(targetIndex) && targetIndex >= 0 && targetIndex < this.columns.length) {
+        const currentIndex = this.columns.indexOf(column);
+        if (currentIndex !== targetIndex) {
+          this.switchColumn(currentIndex, targetIndex);
+        }
+      } else {
+        alert('Invalid position index!');
+      }
+    }
+  }
 
   isFormValid(): boolean {
     return this.newTask.Title.trim().length > 0 && this.newTask.Status.trim().length > 0;
@@ -153,7 +155,7 @@ isLinear: any;
     const index = this.columns.indexOf(column);
     if (index > -1) {
       this.columns.splice(index, 1);
-      localStorage.setItem('savedColumns', JSON.stringify(this.columns));
+      localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
     }
   }
 
@@ -161,7 +163,7 @@ isLinear: any;
     const newTitle = prompt('new column title:', column.headerText);
     if (newTitle) {
       column.headerText = newTitle;
-      localStorage.setItem('savedColumns', JSON.stringify(this.columns));
+      localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
     }
   }
 
@@ -169,6 +171,7 @@ isLinear: any;
     this.columns.forEach((column: any) => {
       column.showDeleteButton = !column.showDeleteButton;
     });
+    // localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
   }
 
   addColumn(): void {
@@ -190,7 +193,7 @@ isLinear: any;
         } else {
           this.columns.push(newColumn);
         }
-        localStorage.setItem('savedColumns', JSON.stringify(this.columns));
+        localStorage.setItem('kanbanColumns', JSON.stringify(this.columns));
 
       }
     }
