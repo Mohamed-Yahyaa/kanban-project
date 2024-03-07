@@ -199,6 +199,10 @@ isLinear: any;
     }
   }
 
+// calculate(){
+// const start = new Date().getTime()
+// const end = new Date().getTime()
+// }
 
   submitForm(): void {
     if (this.isFormValid()) {
@@ -226,6 +230,7 @@ isLinear: any;
     const {data}= event;
     this.openDialog(data)
   }
+
 
 
   // public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' ,   allowDragAndDrop: true};

@@ -23,6 +23,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 
 import { MatSelectModule } from '@angular/material/select';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+import { StepperAllModule, StepperModule } from '@syncfusion/ej2-angular-navigations';
 
 
 
@@ -41,7 +42,7 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
     MatMenuModule, MatIconModule, MatButtonModule,
     MatBadgeModule ,DragDropModule ,FormsModule,MatDialogModule,
     MatInputModule,MatFormFieldModule
-    ,MatSelectModule,DropDownListModule,MatStepperModule,ReactiveFormsModule
+    ,MatSelectModule,DropDownListModule,MatStepperModule,ReactiveFormsModule,StepperModule,StepperAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]
