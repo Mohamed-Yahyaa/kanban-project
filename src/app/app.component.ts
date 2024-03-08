@@ -12,6 +12,7 @@ import {
   DialogSettingsModel,
   KanbanComponent,
   KanbanModule,
+  SwimlaneSettingsModel,
 } from '@syncfusion/ej2-angular-kanban';
 import { DialogComponent } from './dialog/dialog.component';
 import { ActionBeginEventArgs } from '@syncfusion/ej2-angular-dropdowns';
@@ -63,12 +64,14 @@ export class AppComponent {
 firstCtrl: any;
 secondCtrl: any;
 isLinear: any;
+duration: any;
 
   constructor(private dialog: MatDialog) {
   }
     ngOnInit() {
     const savedData = localStorage.getItem('kanbanData');
-    const savedColumns = localStorage.getItem("kanbanColumns")
+    const savedColumns = localStorage.getItem("kanbanColumns");
+    const savedDuration = localStorage.getItem('taskDuration');
     if (savedData) {
 
 
@@ -78,6 +81,7 @@ isLinear: any;
         this.reorderColumns();
 
     }
+    console.log('Saved Task Duration:', savedDuration);
   }
 
 
@@ -106,6 +110,33 @@ isLinear: any;
     //this.kanbanObj.columns = [...kanbanColumns];
   }
 
+  calculateTaskDuration(startDate: Date, endDate: Date): string {
+    const millisecondsPerDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+
+    // Calculate the difference in days between the start and end dates
+    const durationInDays = Math.round(Math.abs((endDate.getTime() - startDate.getTime()) / millisecondsPerDay));
+
+    const years = Math.floor(durationInDays / 365);
+    const months = Math.floor((durationInDays % 365) / 30);
+    const days = durationInDays % 30;
+
+    let durationString = '';
+
+    if (years > 0) {
+      durationString += years === 1 ? `${years} year ` : `${years} years `;
+    }
+
+    if (months > 0) {
+      durationString += months === 1 ? `${months} month ` : `${months} months `;
+    }
+
+    if (days > 0) {
+      durationString += days === 1 ? `${days} day` : `${days} days`;
+    }
+
+    return durationString.trim();
+  }
+
 
   openDialog(item:any): void {
   const dialogRef = this.dialog.open(DialogComponent, {
@@ -124,6 +155,10 @@ isLinear: any;
       localStorage.setItem('kanbanData', JSON.stringify(this.data));
     }
   }
+  const duration = this.calculateTaskDuration(item.startDate, item.endDate);
+  console.log('Task Duration:', duration);
+
+  localStorage.setItem('taskDuration', duration);
   });
   }
 
@@ -199,10 +234,11 @@ isLinear: any;
     }
   }
 
-// calculate(){
-// const start = new Date().getTime()
-// const end = new Date().getTime()
-// }
+
+
+
+
+
 
   submitForm(): void {
     if (this.isFormValid()) {
@@ -222,8 +258,11 @@ isLinear: any;
   title = 'kanban-project';
   public cardSettings: CardSettingsModel = {
     contentField: 'Summary',
-    headerField: 'Id'
+    headerField: 'Id',
+
   };
+  // public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' };
+
 
   handleActionBegin(event: DialogEventArgs){
     event.cancel = true;

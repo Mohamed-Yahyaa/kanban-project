@@ -54,6 +54,13 @@
           </mat-form-field>
         </form>
       </div>
+      <!-- <form [formGroup]="secondFormGroup">
+        <mat-form-field appearance="fill">
+          <mat-label>Summary</mat-label>
+          <textarea matInput formControlName="secondCtrl" [(ngModel)]="newTask.Assignee"></textarea>
+        </mat-form-field>
+      </form> -->
+
       <div mat-dialog-actions>
         <button class="but" mat-button (click)="saveChanges()">Save</button>
         <button mat-button (click)="closeDialog()">Cancel</button>

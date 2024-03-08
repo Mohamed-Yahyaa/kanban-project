@@ -50,6 +50,29 @@
  </mat-menu>
 
 </ng-template>
+<ng-template #cardSettingsTemplate let-data>
+  <div class='e-card-content'>
+      <table class="card-template-wrap">
+          <tbody>
+              <tr class="Idd">
+
+                  {{data.Id}}
+              </tr>
+              <tr class="summ">
+
+                  {{data.Summary}}
+              </tr>
+              <tr>
+
+                 <p class="de">Task {{duration}}</p>
+
+                {{data.Deadline}}
+            </tr>
+          </tbody>
+      </table>
+  </div>
+</ng-template>
+
   </e-column>
   </e-columns>
 

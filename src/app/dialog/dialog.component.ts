@@ -2,6 +2,7 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SwimlaneSettingsModel } from '@syncfusion/ej2-angular-kanban';
 
 @Component({
   selector: 'app-dialog',
@@ -67,10 +68,6 @@ export class DialogComponent implements OnInit {
   }
 
 
-
-
-
-
   updateStepIndex(): void {
     const selectedIndex = this.getStepIndex(this.newTask.Status);
     if (selectedIndex >= 0) {
@@ -109,5 +106,7 @@ export class DialogComponent implements OnInit {
     console.log('Status:', this.newTask.Status);
 
 }
+
+// public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' };
 
 }

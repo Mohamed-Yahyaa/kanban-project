@@ -8,6 +8,7 @@ export const data = [
     Priority: 'High',
     Estimate: 1,
     Assignee: 'Steven walker',
+    Deadline: new Date()
   },
 
   {
@@ -147,7 +148,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
   },
 
-  
+
 ];
 
 
