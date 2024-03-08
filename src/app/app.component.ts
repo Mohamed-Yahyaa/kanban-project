@@ -110,32 +110,6 @@ duration: any;
     //this.kanbanObj.columns = [...kanbanColumns];
   }
 
-  calculateTaskDuration(startDate: Date, endDate: Date): string {
-    const millisecondsPerDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
-
-    // Calculate the difference in days between the start and end dates
-    const durationInDays = Math.round(Math.abs((endDate.getTime() - startDate.getTime()) / millisecondsPerDay));
-
-    const years = Math.floor(durationInDays / 365);
-    const months = Math.floor((durationInDays % 365) / 30);
-    const days = durationInDays % 30;
-
-    let durationString = '';
-
-    if (years > 0) {
-      durationString += years === 1 ? `${years} year ` : `${years} years `;
-    }
-
-    if (months > 0) {
-      durationString += months === 1 ? `${months} month ` : `${months} months `;
-    }
-
-    if (days > 0) {
-      durationString += days === 1 ? `${days} day` : `${days} days`;
-    }
-
-    return durationString.trim();
-  }
 
 
   openDialog(item:any): void {
@@ -155,10 +129,7 @@ duration: any;
       localStorage.setItem('kanbanData', JSON.stringify(this.data));
     }
   }
-  const duration = this.calculateTaskDuration(item.startDate, item.endDate);
-  console.log('Task Duration:', duration);
-
-  localStorage.setItem('taskDuration', duration);
+ 
   });
   }
 
@@ -234,12 +205,6 @@ duration: any;
     }
   }
 
-
-
-
-
-
-
   submitForm(): void {
     if (this.isFormValid()) {
       this.data.push({...this.newTask});
@@ -248,8 +213,6 @@ duration: any;
     }
     console.log(this.newTask)
   }
-
-
 
   taskCount: number = 0;
   inCount() {
@@ -269,8 +232,6 @@ duration: any;
     const {data}= event;
     this.openDialog(data)
   }
-
-
 
   // public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' ,   allowDragAndDrop: true};
 }
