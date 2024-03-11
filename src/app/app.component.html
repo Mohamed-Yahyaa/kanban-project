@@ -63,11 +63,22 @@
                   {{data.Summary}}
               </tr>
               <tr>
-
-                 <p class="de">Task {{duration}}</p>
-
+                <td>
+                  <label>Start Date:</label>
+                  <input type="date" [(ngModel)]="data.startDate" (ngModelChange)="updateDuration(data)" />
+                </td>
+                <td>
+                  <label>Duration:</label>
+                  {{ data.duration ? data.duration + ' days' : '' }}
+                </td>
+              </tr>
                 <!-- {{data.Deadline}} -->
-            </tr>
+
+                <!-- <p class="de">{{data.StartDate | date:'medium'}}  {{data.Duration}}</p> -->
+                <!-- <input type="date" [(ngModel)]="data.StartDate" (ngModelChange)="updateTask()" /> -->
+                                <!-- <label>End Date:</label>
+                <input type="date" [(ngModel)]="data.EndDate" (ngModelChange)="updateTask()" /> -->
+            
           </tbody>
       </table>
   </div>

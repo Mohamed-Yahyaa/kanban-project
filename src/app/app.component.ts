@@ -64,7 +64,10 @@ export class AppComponent {
 firstCtrl: any;
 secondCtrl: any;
 isLinear: any;
-duration: any;
+
+StartDate: Date;
+EndDate: Date;
+  taskUpdated: any;
 
   constructor(private dialog: MatDialog) {
   }
@@ -84,6 +87,16 @@ duration: any;
     console.log('Saved Task Duration:', savedDuration);
   }
 
+
+  updateDuration(task: Data): void {
+    if (task.startDate && task.endDate) {
+      const diffInMs = task.endDate.getTime() - task.startDate.getTime();
+      task.duration = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)); // Calculate duration in days
+    } else {
+      task.duration = undefined;
+      
+    }
+  }
 
   switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
     const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
@@ -129,7 +142,7 @@ duration: any;
       localStorage.setItem('kanbanData', JSON.stringify(this.data));
     }
   }
- 
+
   });
   }
 

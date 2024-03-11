@@ -8,7 +8,10 @@ export const data = [
     Priority: 'High',
     Estimate: 1,
     Assignee: 'Steven walker',
-    Deadline: new Date()
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
+
   },
 
   {
@@ -20,6 +23,9 @@ export const data = [
     Priority: 'High',
     Estimate: 1,
     Assignee: 'Steven walker',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
 
   {
@@ -31,6 +37,9 @@ export const data = [
     Priority: 'High',
     Estimate: 1,
     Assignee: 'Steven walker',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
 
   {
@@ -42,6 +51,9 @@ export const data = [
     Priority: 'High',
     Estimate: 1,
     Assignee: 'Steven walker',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
 
   {
@@ -53,6 +65,9 @@ export const data = [
     Priority: 'High',
     Estimate: 1,
     Assignee: 'Steven walker',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
 
   {
@@ -64,6 +79,9 @@ export const data = [
     Priority: 'Low',
     Estimate: 1.5,
     Assignee: 'Robert King',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
 
   {
@@ -75,6 +93,9 @@ export const data = [
     Priority: 'High',
     Estimate: 1,
     Assignee: 'Steven walker',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
 
   {
@@ -86,6 +107,9 @@ export const data = [
     Priority: 'Low',
     Estimate: 5.5,
     Assignee: 'Margaret hamilt',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
   {
     Id: 'Task 9',
@@ -96,6 +120,9 @@ export const data = [
     Priority: 'High',
     Estimate: 1,
     Assignee: 'Steven walker',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
   {
     Id: 'Task 10',
@@ -106,6 +133,9 @@ export const data = [
     Priority: 'High',
     Estimate: 5.5,
     Assignee: 'Margaret hamilt',
+    StartDate:  new Date(),
+    EndDate: new Date(),
+    // Duration: ''
   },
   {
     Id: 'Task 11',
@@ -116,6 +146,9 @@ export const data = [
     Priority: 'High',
     Estimate: 5.5,
     Assignee: 'Margaret hamilt',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
   {
     Id: 'Task 12',
@@ -126,6 +159,9 @@ export const data = [
     Priority: 'High',
     Estimate: 5.5,
     Assignee: 'Margaret hamilt',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
   {
     Id: 'Task 13',
@@ -136,6 +172,9 @@ export const data = [
     Priority: 'High',
     Estimate: 5.5,
     Assignee: 'Margaret hamilt',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
   {
     Id: 'Task 14',
@@ -146,6 +185,9 @@ export const data = [
     Priority: 'High',
     Estimate: 5.5,
     Assignee: 'Margaret hamilt',
+    StartDate:  new Date('Mar 09, 2023, 9:03:01 AM'),
+    EndDate: new Date(),
+    Duration: '3 days'
   },
 
 
