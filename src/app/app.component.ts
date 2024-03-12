@@ -68,6 +68,7 @@ isLinear: any;
 StartDate: Date;
 EndDate: Date;
   taskUpdated: any;
+taskIndex: number;
 
   constructor(private dialog: MatDialog) {
   }
@@ -88,15 +89,48 @@ EndDate: Date;
   }
 
 
-  updateDuration(task: Data): void {
-    if (task.startDate && task.endDate) {
-      const diffInMs = task.endDate.getTime() - task.startDate.getTime();
-      task.duration = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)); // Calculate duration in days
+  daysSinceStart( StartDate: Date): number {
+    const today = new Date();
+    const start = StartDate ? new Date(StartDate) : new Date();
+    const timeDiff = Math.abs(today.getTime() - start.getTime());
+    const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+    return days;
+  }
+
+  updateTask(data): void {
+    if (data.StartDate) {
+      const today = new Date();
+      const startDate = new Date(data.StartDate);
+
+      if (startDate > today) {
+        data.status = 'Inactive';
+      } else {
+        data.status = 'Active';
+
+        // Reset counting when the StartDate is changed
+        if (!this.taskUpdated) {
+          this.taskUpdated = true;
+          this.StartDate = new Date();
+        }
+      }
     } else {
-      task.duration = undefined;
-      
+      data.status = ''; // Clear the task status if no start date is set
     }
   }
+
+  // switchStatus(taskIndex: number) {
+  //   // Set the new status for the specific task
+  //   this.data[taskIndex].Status = 'New Status';
+
+  //   // Start a new StartDate today for the specific task
+  //   this.data[taskIndex].StartDate = new Date();
+
+  //   // Reset the counting for the specific task
+  //   this.taskUpdated[taskIndex] = false;
+
+  //   // Update the task
+  //   this.updateTask(this.data[taskIndex]);
+  // }
 
   switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
     const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
@@ -246,5 +280,8 @@ EndDate: Date;
     this.openDialog(data)
   }
 
-  // public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' ,   allowDragAndDrop: true};
+  public swimlaneSettings: SwimlaneSettingsModel = {
+    keyField: 'Assignee',
+    showItemCount: false
+};
 }

@@ -2,6 +2,7 @@
 <h1>Kanban Project</h1>
 
 <h1>Kanban Project</h1>
+
 <!-- <form (submit)="submitForm()" #taskForm="ngForm">
   <label for="Id">Id</label>
   <input type="text" id="Id" [(ngModel)]="newTask.Id" name="Id" required>
@@ -23,7 +24,7 @@
 <button  mat-flat-button  class="material-symbols-outlined-2"(click)="toggleDeleteButtonsVisibility()" > <mat-icon>settings</mat-icon></button>
 
 
-<ejs-kanban #kanbanObj (dialogOpen)="handleActionBegin($event)" keyField="Status" [dataSource]="data" [cardSettings]="cardSettings" width="auto" height="auto">
+<ejs-kanban #kanbanObj (dialogOpen)="handleActionBegin($event)" keyField="Status" [dataSource]="data" [cardSettings]="cardSettings" [swimlaneSettings]='swimlaneSettings' width="auto" height="auto">
   <e-columns>
     <!-- <e-column headerText="To do" keyField="Open" allowToggle="true"></e-column>
     <e-column headerText="In Progress" keyField="InProgress" allowToggle="true"></e-column>
@@ -63,14 +64,10 @@
                   {{data.Summary}}
               </tr>
               <tr>
-                <td>
-                  <label>Start Date:</label>
-                  <input type="date" [(ngModel)]="data.startDate" (ngModelChange)="updateDuration(data)" />
-                </td>
-                <td>
-                  <label>Duration:</label>
-                  {{ data.duration ? data.duration + ' days' : '' }}
-                </td>
+          <p class="str">{{data.StartDate | date:'medium'}}  Days : {{daysSinceStart(data.StartDate)}}</p>
+
+
+          <p class="day"></p>
               </tr>
                 <!-- {{data.Deadline}} -->
 
@@ -78,7 +75,7 @@
                 <!-- <input type="date" [(ngModel)]="data.StartDate" (ngModelChange)="updateTask()" /> -->
                                 <!-- <label>End Date:</label>
                 <input type="date" [(ngModel)]="data.EndDate" (ngModelChange)="updateTask()" /> -->
-            
+
           </tbody>
       </table>
   </div>
