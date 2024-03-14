@@ -69,6 +69,7 @@ StartDate: Date;
 EndDate: Date;
   taskUpdated: any;
 taskIndex: number;
+dialogSettings: any;
 
   constructor(private dialog: MatDialog) {
   }

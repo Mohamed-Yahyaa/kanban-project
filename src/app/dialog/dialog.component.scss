@@ -13,3 +13,13 @@
   transform: translate(-50%, -50%);
 
 }
+
+
+::ng-deep .mat-step-icon-content { display: none !important; }
+::ng-deep .mat-step-icon { display: none !important; }
+
+.mat-step-label
+{
+  margin-top: -0.7rem;
+}
+

@@ -1,9 +1,21 @@
+<!-- <div class="iconWithLabel">
+  <ejs-stepper>
+    <e-steps>
+      <e-step label="Cart" iconCss="sf-icon-cart"></e-step>
+      <e-step label="Address" iconCss="sf-icon-user"></e-step>
+      <e-step label="Delivery" iconCss="sf-icon-transport"></e-step>
+      <e-step label="Payment" iconCss="sf-icon-payment"></e-step>
+      <e-step label="Ordered" iconCss="sf-icon-success"></e-step>
+  </e-steps>
+  </ejs-stepper>
+</div> -->
+
 
 <div class="iconWithLabel">
   <mat-horizontal-stepper [linear]="isLinear" #stepper (selectionChange)="onStatusChange($event)" [selectedIndex]="getStepIndex(newTask.Status)">
     <mat-step [stepControl]="firstStepForm" id="1">
-      <ng-template matStepLabel>
-        <mat-icon>check_circle</mat-icon> Todo
+      <ng-template  matStepLabel>
+        <mat-icon> list_alt</mat-icon> Todo
       </ng-template>
       <form #firstStepForm="ngForm">
         <!-- Step 1 content -->
@@ -11,7 +23,7 @@
     </mat-step>
     <mat-step id="2">
       <ng-template matStepLabel>
-        <mat-icon>hourglass_empty</mat-icon> In Progress
+        <mat-icon class="ic">hourglass_empty</mat-icon>In Progress
       </ng-template>
       <!-- Step 2 content -->
     </mat-step>
@@ -23,8 +35,9 @@
     </mat-step>
     <mat-step id="4">
       <ng-template matStepLabel>
-        <mat-icon>done_all</mat-icon> Done
+        <mat-icon>done_outline</mat-icon> Done
       </ng-template>
+      
       <!-- Step 4 content -->
     </mat-step>
   </mat-horizontal-stepper>
@@ -66,5 +79,5 @@
         <button mat-button (click)="closeDialog()">Cancel</button>
       </div>
 <ng-template>
-  
+
 </ng-template>
