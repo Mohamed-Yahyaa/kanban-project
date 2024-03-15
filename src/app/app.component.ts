@@ -34,6 +34,9 @@ import { StepperComponent } from './stepper/stepper.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+onActionBegin($event: any) {
+throw new Error('Method not implemented.');
+}
 
 
   newTask: any = {
@@ -70,6 +73,7 @@ EndDate: Date;
   taskUpdated: any;
 taskIndex: number;
 dialogSettings: any;
+editSettings: any;
 
   constructor(private dialog: MatDialog) {
   }
@@ -280,6 +284,7 @@ dialogSettings: any;
     const {data}= event;
     this.openDialog(data)
   }
+
 
   public swimlaneSettings: SwimlaneSettingsModel = {
     keyField: 'Assignee',
