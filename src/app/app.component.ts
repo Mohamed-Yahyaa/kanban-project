@@ -123,19 +123,6 @@ editSettings: any;
     }
   }
 
-  // switchStatus(taskIndex: number) {
-  //   // Set the new status for the specific task
-  //   this.data[taskIndex].Status = 'New Status';
-
-  //   // Start a new StartDate today for the specific task
-  //   this.data[taskIndex].StartDate = new Date();
-
-  //   // Reset the counting for the specific task
-  //   this.taskUpdated[taskIndex] = false;
-
-  //   // Update the task
-  //   this.updateTask(this.data[taskIndex]);
-  // }
 
   switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
     const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];
@@ -201,6 +188,7 @@ editSettings: any;
     }
   }
 
+
   isFormValid(): boolean {
     return this.newTask.Title.trim().length > 0 && this.newTask.Status.trim().length > 0;
 
@@ -257,6 +245,7 @@ editSettings: any;
     }
   }
 
+
   submitForm(): void {
     if (this.isFormValid()) {
       this.data.push({...this.newTask});
@@ -265,6 +254,7 @@ editSettings: any;
     }
     console.log(this.newTask)
   }
+
 
   taskCount: number = 0;
   inCount() {
@@ -275,8 +265,10 @@ editSettings: any;
     contentField: 'Summary',
     headerField: 'Id',
 
+
   };
   // public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' };
+  // allowDragAndDrop: false
 
 
   handleActionBegin(event: DialogEventArgs){
@@ -287,7 +279,7 @@ editSettings: any;
 
 
   public swimlaneSettings: SwimlaneSettingsModel = {
-    keyField: 'Assignee',
+    keyField: 'Status',
     showItemCount: false
 };
 }

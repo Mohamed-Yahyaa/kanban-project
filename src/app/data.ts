@@ -10,6 +10,7 @@ export const data = [
     Assignee: 'Steven walker',
     StartDate:  new Date('Mar 09, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '120'
 
 
   },
@@ -25,6 +26,7 @@ export const data = [
     Assignee: 'Steven walker',
     StartDate:  new Date('Mar 09, 2024, 12:23:01 AM'),
     EndDate: new Date(),
+    Salary: '100'
 
   },
 
@@ -39,6 +41,7 @@ export const data = [
     Assignee: 'Steven walker',
     StartDate:  new Date('Mar 09, 2024, 4:03:01 PM'),
     EndDate: new Date(),
+    Salary: '150'
 
   },
 
@@ -53,6 +56,7 @@ export const data = [
     Assignee: 'Steven walker',
     StartDate:  new Date('Mar 08, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '90'
 
   },
 
@@ -67,6 +71,7 @@ export const data = [
     Assignee: 'Steven walker',
     StartDate:  new Date('Mar 08, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '250'
 
   },
 
@@ -81,6 +86,7 @@ export const data = [
     Assignee: 'Robert King',
     StartDate:  new Date('Mar 09, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '520'
 
   },
 
@@ -95,6 +101,7 @@ export const data = [
     Assignee: 'Steven walker',
     StartDate:  new Date('Mar 10, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '150'
 
   },
 
@@ -161,6 +168,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '520'
 
   },
   {
@@ -174,6 +182,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '520'
 
   },
   {
@@ -187,6 +196,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '520'
     // Duration: '3 days'
   },
 
