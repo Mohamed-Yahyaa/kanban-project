@@ -245,6 +245,26 @@ editSettings: any;
     }
   }
 
+  TotalSalary(status:string): number {
+    let total = 0;
+    for (const employee of this.data) {
+      if (employee.Status === status) {
+        total += Number(employee.Salary);
+      }
+      console.log(total)
+    }
+    return total;
+  }
+
+
+//  TotalSalary(): number {
+//   let total = 0;
+//   for (const employee of this.data) {
+//     total += Number(employee.Salary);
+//   }
+//   return total;
+// }
+
 
   submitForm(): void {
     if (this.isFormValid()) {

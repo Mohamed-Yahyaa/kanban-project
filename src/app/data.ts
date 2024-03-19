@@ -116,6 +116,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 10, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '500'
 
   },
   {
@@ -129,6 +130,7 @@ export const data = [
     Assignee: 'Steven walker',
     StartDate:  new Date('Mar 10, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '350'
 
   },
   {
@@ -142,6 +144,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 8:02:01 AM'),
     EndDate: new Date(),
+    Salary: '220'
 
   },
   {
@@ -155,6 +158,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 9:03:01 AM'),
     EndDate: new Date(),
+    Salary: '460'
 
   },
   {
@@ -168,7 +172,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 9:03:01 AM'),
     EndDate: new Date(),
-    Salary: '520'
+    Salary: '200'
 
   },
   {
@@ -182,7 +186,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 9:03:01 AM'),
     EndDate: new Date(),
-    Salary: '520'
+    Salary: '1200'
 
   },
   {

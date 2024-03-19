@@ -21,6 +21,7 @@
 <!-- <button mat-button (click)="openDialog()">Open Dialog</button> -->
 <button  mat-flat-button  class="material-symbols-outlined-1"(click)="addColumn()"><mat-icon>add_box</mat-icon></button>
 
+
 <!-- <button  mat-flat-button  class="material-symbols-outlined-1"(click)="swimlaneSettings" > <mat-icon>add_box</mat-icon></button> -->
 
 <button  mat-flat-button  class="material-symbols-outlined-2"(click)="toggleDeleteButtonsVisibility()"><mat-icon>settings</mat-icon></button>
@@ -38,9 +39,12 @@
       <div>{{ column.headerText }}</div>
       <mat-icon class="material-symbols-outlined" matBadge= {{getTaskCount(column.keyField)}} matBadgeSize="medium" matBadgeColor="primary"></mat-icon>
       <!-- <button  mat-flat-button  class="material-symbols-outlined-4" (click)="createTask()"><mat-icon>add_circle</mat-icon></button> -->
-        <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button  aria-label="Example icon button with a menu icon">
-           <mat-icon>menu</mat-icon>
-         </button>
+      <td class="Sal"> {{ TotalSalary(column.keyField) | currency: 'EUR' }}</td>
+
+      <button mat-button [matMenuTriggerFor]="menu" class="menuu" mat-icon-button  aria-label="Example icon button with a menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+
           <button *ngIf="column.showDeleteButton"  mat-menu-item class="material-symbols-outlined-3" (click)="removeColumn(column)"><mat-icon>cancel</mat-icon></button>
 
  <mat-menu #menu="matMenu">
@@ -70,9 +74,7 @@
 
           <p class="day"></p>
               </tr>
-              <tr class="Salary">
-                
-                <!-- <td>Total Salary in Open status: {{ calculateTotalSalary() | currency: 'EUR' }}</td> -->
+              <tr class="salr">
                 {{data.Salary | currency: 'EUR' }}
               </tr>
           </tbody>
