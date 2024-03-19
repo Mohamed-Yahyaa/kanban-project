@@ -41,7 +41,7 @@ export const data = [
     Assignee: 'Steven walker',
     StartDate:  new Date('Mar 09, 2024, 4:03:01 PM'),
     EndDate: new Date(),
-    Salary: '150'
+    Salary: '230'
 
   },
 
