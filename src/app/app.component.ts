@@ -298,6 +298,7 @@ editSettings: any;
   }
 
   handleDataBound(event: any): void {
+    event 
     const updatedData = this.kanbanObj.dataSource;
     localStorage.setItem('kanbanData', JSON.stringify(updatedData));
   }
