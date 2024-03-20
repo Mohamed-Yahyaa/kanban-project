@@ -297,6 +297,10 @@ editSettings: any;
     this.openDialog(data)
   }
 
+  handleDataBound(event: any): void {
+    const updatedData = this.kanbanObj.dataSource;
+    localStorage.setItem('kanbanData', JSON.stringify(updatedData));
+  }
 
 //   public swimlaneSettings: SwimlaneSettingsModel = {
 //     keyField: 'Status',
