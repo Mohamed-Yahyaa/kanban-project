@@ -27,25 +27,20 @@
   color:#3f51b5;
 }
 
-.custom-form {
-  /* Custom form styles */
+.custom-label{
+text-align: center;
 }
-
-.custom-form-field {
-  /* Custom form field styles */
-}
-
-.custom-label {
-  /* Custom label styles */
-}
-
 .custom-input {
-  /* Custom input styles */
-  /* Example styles */
+
   width: 100%;
   height: 150px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  // border: 2px solid #ccc;
   border-radius: 4px;
+  // background-color: #f8f8f8;
+  font-size: 16px;
   resize: none;
 }
+
+
