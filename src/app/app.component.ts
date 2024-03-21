@@ -48,13 +48,13 @@ throw new Error('Method not implemented.');
     Priority: '',
     Estimate: '',
     Assignee: '',
-    // Add other properties here
+    
   };
 
 
   @ViewChild("kanbanObj") kanbanObj: KanbanComponent;
   columns = [
-{ headerText: 'To do', keyField: 'Open', allowToggle: true, position: 0 },
+    { headerText: 'To do', keyField: 'Open', allowToggle: true, position: 0 },
     { headerText: 'In Progress', keyField: 'InProgress', allowToggle: true, position: 1  },
     { headerText: 'Testing', keyField: 'Testing', allowToggle: true , position: 2 },
     { headerText: 'Done', keyField: 'Close', allowToggle: true, position: 3   }
@@ -112,14 +112,13 @@ editSettings: any;
       } else {
         data.status = 'Active';
 
-        // Reset counting when the StartDate is changed
         if (!this.taskUpdated) {
           this.taskUpdated = true;
           this.StartDate = new Date();
         }
       }
     } else {
-      data.status = ''; // Clear the task status if no start date is set
+      data.status = '';
     }
   }
 
@@ -251,7 +250,7 @@ editSettings: any;
       if (employee.Status === status) {
         total += Number(employee.Salary);
       }
-      console.log(total)
+      // console.log(total)
     }
     return total;
   }
@@ -298,7 +297,7 @@ editSettings: any;
   }
 
   handleDataBound(event: any): void {
-    event 
+    event
     const updatedData = this.kanbanObj.dataSource;
     localStorage.setItem('kanbanData', JSON.stringify(updatedData));
   }
