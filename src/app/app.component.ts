@@ -48,7 +48,7 @@ throw new Error('Method not implemented.');
     Priority: '',
     Estimate: '',
     Assignee: '',
-    
+
   };
 
 
@@ -284,7 +284,6 @@ editSettings: any;
     contentField: 'Summary',
     headerField: 'Id',
 
-
   };
   // public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' };
   // allowDragAndDrop: false
@@ -297,7 +296,7 @@ editSettings: any;
   }
 
   handleDataBound(event: any): void {
-    event
+    // event.requestType !== 'refresh'
     const updatedData = this.kanbanObj.dataSource;
     localStorage.setItem('kanbanData', JSON.stringify(updatedData));
   }

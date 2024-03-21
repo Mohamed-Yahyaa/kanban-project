@@ -172,7 +172,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 9:03:01 AM'),
     EndDate: new Date(),
-    Salary: '200'
+    Salary: '230'
 
   },
   {
@@ -200,7 +200,7 @@ export const data = [
     Assignee: 'Margaret hamilt',
     StartDate:  new Date('Mar 11, 2024, 9:03:01 AM'),
     EndDate: new Date(),
-    Salary: '520'
+    Salary: '580'
     // Duration: '3 days'
   },
 
