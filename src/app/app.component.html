@@ -27,7 +27,7 @@
 <button  mat-flat-button  class="material-symbols-outlined-2"(click)="toggleDeleteButtonsVisibility()"><mat-icon>settings</mat-icon></button>
 
 
-<ejs-kanban #kanbanObj (dialogOpen)="handleActionBegin($event)" (dataBound)="handleDataBound($event)" keyField="Status" [allowDragAndDrop]="true" [dataSource]="data" [cardSettings]="cardSettings" [swimlaneSettings]=''  width="auto" height="auto">
+<ejs-kanban #kanbanObj (dialogOpen)="handleActionBegin($event)" (dataBound)="handleDataBound($event)" keyField="Status" [allowDragAndDrop]="true" [dataSource]="data" [cardSettings]="cardSettings" [swimlaneSettings]='swimlaneSettings'  width="auto" height="auto">
   <e-columns>
     <!-- <e-column headerText="To do" keyField="Open" allowToggle="true"></e-column>
     <e-column headerText="In Progress" keyField="InProgress" allowToggle="true"></e-column>
@@ -69,8 +69,11 @@
                   {{data.Summary}}
               </tr>
               <tr>
-          <p class="str">{{data.StartDate | date:'medium'}}  Days : {{daysSinceStart(data.StartDate)}}</p>
+          <p  class="str">{{data.StartDate | date:'medium'}}  Days : {{daysSinceStart(data.StartDate)}}</p>
 
+
+
+            <!-- <p *ngIf="task.status === 'Active'">Days since start: {{ daysSinceStart(task.StartDate) }}</p> -->
 
           <p class="day"></p>
               </tr>

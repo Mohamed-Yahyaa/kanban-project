@@ -94,6 +94,7 @@ editSettings: any;
   }
 
 
+
   daysSinceStart( StartDate: Date): number {
     const today = new Date();
     const start = StartDate ? new Date(StartDate) : new Date();
@@ -120,6 +121,8 @@ editSettings: any;
     } else {
       data.status = '';
     }
+    localStorage.setItem('kanbanData', JSON.stringify(this.data));
+
   }
 
 
@@ -295,14 +298,15 @@ editSettings: any;
     this.openDialog(data)
   }
 
+
   handleDataBound(event: any): void {
-    // event.requestType !== 'refresh'
     const updatedData = this.kanbanObj.dataSource;
     localStorage.setItem('kanbanData', JSON.stringify(updatedData));
   }
 
-//   public swimlaneSettings: SwimlaneSettingsModel = {
-//     keyField: 'Status',
-//     showItemCount: false
-// };
+
+  public swimlaneSettings: SwimlaneSettingsModel = {
+    keyField: 'Status',
+    showItemCount: false
+};
 }
