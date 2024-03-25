@@ -307,10 +307,10 @@ editSettings: any;
   }
 
 
-//   public swimlaneSettings: SwimlaneSettingsModel = {
-//     keyField: 'Status',
-//     showItemCount: false
-// };
+  public swimlaneSettings: SwimlaneSettingsModel = {
+    keyField: 'Status',
+    showItemCount: false
+};
 
 public priorityData: string[] = ['','Open', 'InProgress', 'Testing','Close'];
 change(args: ChangeEventArgs): void {
