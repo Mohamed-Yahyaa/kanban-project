@@ -18,6 +18,8 @@ import { DialogComponent } from './dialog/dialog.component';
 import { ActionBeginEventArgs } from '@syncfusion/ej2-angular-dropdowns';
 import { data } from './data';
 import { StepperComponent } from './stepper/stepper.component';
+import { Query } from '@syncfusion/ej2-data';
+import { ChangeEventArgs } from '@syncfusion/ej2-angular-dropdowns';
 
 @Component({
   selector: 'app-root',
@@ -305,8 +307,17 @@ editSettings: any;
   }
 
 
-  public swimlaneSettings: SwimlaneSettingsModel = {
-    keyField: 'Status',
-    showItemCount: false
-};
+//   public swimlaneSettings: SwimlaneSettingsModel = {
+//     keyField: 'Status',
+//     showItemCount: false
+// };
+
+public priorityData: string[] = ['','Open', 'InProgress', 'Testing','Close'];
+change(args: ChangeEventArgs): void {
+    let filterQuery: Query = new Query();
+    if (args.value !== '') {
+        filterQuery = new Query().where('Status', 'equal', args.value);
+    }
+    (this.kanbanObj as KanbanComponent).query = filterQuery;
+}
 }
