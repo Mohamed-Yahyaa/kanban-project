@@ -1,31 +1,32 @@
 
+
+
 <div class="name">
-  <label for="name">
-    Id
-
-  <input id="name" type="text" formControlName="name">
-</label>
-
-
-
-  <label for="address">
-    Task
-  </label>
-  <input id="address" type="text" formControlName="address">
-
-
+  <div class="input-group">
+    <p class="tas" for="address">Task</p>
+    <input class="input-style" id="name" type="text" formControlName="name">
+  </div>
+  <div class="input-group">
+    <p class="nam" for="name">Id</p>
+    <input class="input-style" id="address" type="text" formControlName="address">
+  </div>
 </div>
 
-<div class="date">
+
+
+
+
 <label for="date">
   date
 </label>
-<input id="date" type="datetime-local" formControlName="date">
+<div class="date">
+<input class="input-style" id="date" type="datetime-local" formControlName="date">
 
 <label for="price">
   price
 </label>
-<input id="price" type="number" min="0" formControlName="price">
+
+<input class="input-style" id="price" type="number" min="0" formControlName="price">
 </div>
 
 <div class="butt">
