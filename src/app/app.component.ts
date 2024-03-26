@@ -180,6 +180,7 @@ editSettings: any;
   Dialog() {
     const dialogRef = this.dialog.open(AddComponent,{
       width: '80rem',
+      height: '14rem'
 
     });
 
