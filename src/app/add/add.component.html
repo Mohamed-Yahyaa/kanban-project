@@ -4,31 +4,27 @@
 <div class="name">
   <div class="input-group">
     <p class="tas" for="address">Task</p>
-    <input class="input-style" id="name" type="text" formControlName="name">
+    <input class="input-style" id="name" type="text"  placeholder="Task" formControlName="name">
   </div>
   <div class="input-group">
-    <p class="nam" for="name">Id</p>
-    <input class="input-style" id="address" type="text" formControlName="address">
+    <p class="nam" for="name">Summary</p>
+    <input class="input-style" id="address" type="text"  placeholder="Summary" formControlName="address">
   </div>
 </div>
 
 
-
-
-
-<label for="date">
-  date
-</label>
-<div class="date">
-<input class="input-style" id="date" type="datetime-local" formControlName="date">
-
-<label for="price">
-  price
-</label>
-
-<input class="input-style" id="price" type="number" min="0" formControlName="price">
+<div class="name-2">
+  <div class="input-group">
+    <p class="date" for="address">Date</p>
+    <input class="input-style" id="date" type="datetime-local" formControlName="date">
+  </div>
+  <div class="input-group">
+    <p class="date" for="price">Price</p>
+    <input class="input-style" id="address" type="number" min="0"  placeholder="$" formControlName="price">
+  </div>
 </div>
 
+
 <div class="butt">
-<button>Save</button>
+  <button mat-flat-button color="primary">Save</button>
 </div>
