@@ -24,6 +24,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { StepperAllModule, StepperModule } from '@syncfusion/ej2-angular-navigations';
+import { AddComponent } from './add/add.component';
 
 
 
@@ -32,6 +33,7 @@ import { StepperAllModule, StepperModule } from '@syncfusion/ej2-angular-navigat
   declarations: [
     AppComponent,
     DialogComponent,
+    AddComponent,
 
 
 
