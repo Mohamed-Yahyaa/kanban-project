@@ -176,6 +176,14 @@ editSettings: any;
   });
   }
 
+  Dialog() {
+    const dialogRef = this.dialog.open(AppComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
+  }
+
 
   changePositionIndex(column: any): void {
     const newPosition = prompt('Enter the new position index for the column:');
@@ -310,7 +318,7 @@ editSettings: any;
   public swimlaneSettings: SwimlaneSettingsModel = {
     keyField: 'Status',
     showItemCount: false
-    
+
 };
 
 public priorityData: string[] = ['','Open', 'InProgress', 'Testing','Close'];
