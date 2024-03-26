@@ -20,6 +20,7 @@ import { data } from './data';
 import { StepperComponent } from './stepper/stepper.component';
 import { Query } from '@syncfusion/ej2-data';
 import { ChangeEventArgs } from '@syncfusion/ej2-angular-dropdowns';
+import { AddComponent } from './add/add.component';
 
 @Component({
   selector: 'app-root',
@@ -177,10 +178,13 @@ editSettings: any;
   }
 
   Dialog() {
-    const dialogRef = this.dialog.open(AppComponent);
+    const dialogRef = this.dialog.open(AddComponent,{
+      width: '80rem',
+
+    });
 
     dialogRef.afterClosed().subscribe(result => {
-      
+
     });
   }
 
