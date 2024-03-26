@@ -1,7 +1,7 @@
 
 <div class="name">
   <label for="name">
-    Name
+    Id
 
   <input id="name" type="text" formControlName="name">
 </label>
@@ -9,7 +9,7 @@
 
 
   <label for="address">
-    Address
+    Task
   </label>
   <input id="address" type="text" formControlName="address">
 
@@ -21,4 +21,13 @@
   date
 </label>
 <input id="date" type="datetime-local" formControlName="date">
+
+<label for="price">
+  price
+</label>
+<input id="price" type="number" min="0" formControlName="price">
+</div>
+
+<div class="butt">
+<button>Save</button>
 </div>
