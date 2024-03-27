@@ -52,6 +52,8 @@
     <button mat-menu-item (click)="switchColumn(columns.indexOf(column), columns.indexOf(column) - 1)" [disabled]="columns.indexOf(column) === 0">avant</button>
     <button mat-menu-item (click)="switchColumn(columns.indexOf(column), columns.indexOf(column) + 1)" [disabled]="columns.indexOf(column) === -1">après</button>
     <button mat-menu-item (click)="changePositionIndex(column)">Change</button>
+    
+
  </mat-menu>
 
 </ng-template>
