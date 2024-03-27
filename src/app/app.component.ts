@@ -128,6 +128,22 @@ editSettings: any;
 
   }
 
+  changeTaskStatus(task: any, newStatus: string, startDate: Date, endDate: Date): void {
+    const index = this.data.findIndex((t: any) => t.Id === task.Id);
+
+    if (index > -1) {
+        this.data[index].Status = newStatus;
+        this.data[index].StartDate = startDate;
+        this.data[index].EndDate = endDate;
+
+        localStorage.setItem('kanbanData', JSON.stringify(this.data));
+    }
+    // Assuming task is the task object you want to update
+this.changeTaskStatus(task, 'InProgress', startDate, endDate);
+
+}
+
+
 
   switchColumn(sourceColumnIndex: number, targetColumnIndex: number): void {
     const sourceColumn = this.kanbanObj.columns[sourceColumnIndex];

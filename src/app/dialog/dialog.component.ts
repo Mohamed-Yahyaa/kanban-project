@@ -43,8 +43,6 @@ export class DialogComponent implements OnInit {
     localStorage.setItem('kanbanData', JSON.stringify(this.newTask));
     localStorage.setItem('kanbanData', JSON.stringify(this.data));
 
-
-
     this.dialogRef.close(this.newTask);
   }
 
