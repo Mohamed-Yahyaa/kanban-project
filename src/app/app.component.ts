@@ -180,7 +180,7 @@ editSettings: any;
   Dialog() {
     const dialogRef = this.dialog.open(AddComponent,{
       width: '60rem',
-      height: '26rem'
+      height: '27rem'
 
     });
 
@@ -274,15 +274,6 @@ editSettings: any;
   }
 
 
-//  TotalSalary(): number {
-//   let total = 0;
-//   for (const employee of this.data) {
-//     total += Number(employee.Salary);
-//   }
-//   return total;
-// }
-
-
   submitForm(): void {
     if (this.isFormValid()) {
       this.data.push({...this.newTask});
@@ -291,8 +282,6 @@ editSettings: any;
     }
     console.log(this.newTask)
   }
-
-
   taskCount: number = 0;
   inCount() {
     this.taskCount++;
@@ -322,7 +311,7 @@ editSettings: any;
   public swimlaneSettings: any = {
     keyField: 'Status',
     showItemCount: false,
-    headerPosition: 'Bottom'
+    // headerPosition: 'Bottom'
 };
 
 
