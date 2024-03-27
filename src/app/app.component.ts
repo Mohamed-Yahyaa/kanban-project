@@ -180,7 +180,7 @@ editSettings: any;
   Dialog() {
     const dialogRef = this.dialog.open(AddComponent,{
       width: '60rem',
-      height: '23rem'
+      height: '26rem'
 
     });
 
@@ -319,12 +319,13 @@ editSettings: any;
     localStorage.setItem('kanbanData', JSON.stringify(updatedData));
   }
 
-
-  public swimlaneSettings: SwimlaneSettingsModel = {
+  public swimlaneSettings: any = {
     keyField: 'Status',
-    showItemCount: false
-
+    showItemCount: false,
+    headerPosition: 'Bottom'
 };
+
+
 
 public priorityData: string[] = ['','Open', 'InProgress', 'Testing','Close'];
 change(args: ChangeEventArgs): void {
