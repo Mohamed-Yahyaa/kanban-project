@@ -314,10 +314,8 @@ public state: DataStateChangeEventArgs;
     localStorage.setItem('kanbanData', JSON.stringify(updatedData));
   }
 
-  dataStateChange(state: DataStateChangeEventArgs){
-   
 
-  }
+
 
   public swimlaneSettings: any = {
     keyField: 'Status',

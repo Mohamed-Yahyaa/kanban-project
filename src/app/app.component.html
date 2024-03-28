@@ -26,7 +26,7 @@
 (change)='change($event)' index=0 placeholder='Select a priority' class="filter"></ejs-dropdownlist>
 <button  mat-flat-button  class="material-symbols-outlined-2"(click)="toggleDeleteButtonsVisibility()"><mat-icon>settings</mat-icon></button>
 
-<ejs-kanban #kanbanObj (dialogOpen)="handleActionBegin($event)" (dataBound)="handleDataBound($event)" (dataStateChange)='dataStateChange($event)' keyField="Status" [allowDragAndDrop]="true" [dataSource]="data" [cardSettings]="cardSettings"  width="auto" height="auto">
+<ejs-kanban #kanbanObj (dialogOpen)="handleActionBegin($event)" (dataBound)="handleDataBound($event)" keyField="Status" [allowDragAndDrop]="true" [dataSource]="data" [cardSettings]="cardSettings"  width="auto" height="auto">
   <e-columns>
     <!-- <e-column headerText="To do" keyField="Open" allowToggle="true"></e-column>
     <e-column headerText="In Progress" keyField="InProgress" allowToggle="true"></e-column>
