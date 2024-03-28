@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import {
   CardSettingsModel,
   ColumnDirective,
+  DataStateChangeEventArgs,
   DialogEventArgs,
   DialogSettingsModel,
   KanbanComponent,
@@ -37,6 +38,7 @@ import { AddComponent } from './add/add.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  service: any;
 onActionBegin($event: any) {
 throw new Error('Method not implemented.');
 }
@@ -77,8 +79,11 @@ EndDate: Date;
 taskIndex: number;
 dialogSettings: any;
 editSettings: any;
+public state: DataStateChangeEventArgs;
 
-  constructor(private dialog: MatDialog) {
+
+  constructor(private dialog: MatDialog ) {
+
   }
     ngOnInit() {
     const savedData = localStorage.getItem('kanbanData');
@@ -300,12 +305,18 @@ editSettings: any;
     event.cancel = true;
     const {data}= event;
     this.openDialog(data)
+    localStorage.setItem('kanbanData', JSON.stringify(data));
   }
 
 
   handleDataBound(event: any): void {
     const updatedData = this.kanbanObj.dataSource;
     localStorage.setItem('kanbanData', JSON.stringify(updatedData));
+  }
+
+  dataStateChange(state: DataStateChangeEventArgs){
+   
+
   }
 
   public swimlaneSettings: any = {
