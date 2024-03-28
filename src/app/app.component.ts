@@ -38,7 +38,7 @@ import { AddComponent } from './add/add.component';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  service: any;
+
 onActionBegin($event: any) {
 throw new Error('Method not implemented.');
 }
