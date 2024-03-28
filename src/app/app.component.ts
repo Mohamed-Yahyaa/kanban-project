@@ -75,11 +75,11 @@ isLinear: any;
 
 StartDate: Date;
 EndDate: Date;
-  taskUpdated: any;
+ taskUpdated: any;
 taskIndex: number;
 dialogSettings: any;
 editSettings: any;
-public state: DataStateChangeEventArgs;
+
 
 
   constructor(private dialog: MatDialog ) {
