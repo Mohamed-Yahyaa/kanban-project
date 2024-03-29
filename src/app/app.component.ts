@@ -320,6 +320,7 @@ editSettings: any;
   public swimlaneSettings: any = {
     keyField: 'Status',
     showItemCount: false,
+
     // headerPosition: 'Bottom'
 };
 
